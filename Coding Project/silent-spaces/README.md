@@ -6,6 +6,10 @@ CS-440 John Bell - Spring 2024 Group 5
 
 Run `npm install`
 
+## Build
+
+Run `npm run build`
+
 ## Testing
 
 To view a locally hosted version of the source, run `npm run dev`.
