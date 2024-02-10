@@ -16,6 +16,10 @@ To view a locally hosted version of the source, run `npm run dev`.
 
 However, be warned that I'm unsure of how this works exactly with Firebase backend. It should still be functional, as the frontend technology should be decoupled from the backend APIs of Firebase, but _testing is required to know more._
 
+## Deployment
+
+To deploy to firebase, run `firebase deploy`.
+
 # React + Vite (README.md)
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
