@@ -20,6 +20,16 @@ However, be warned that I'm unsure of how this works exactly with Firebase backe
 
 To deploy to firebase, run `firebase deploy`.
 
+Sometimes, you might only want to deploy certain parts of the project, such as the security rules for Firestore.
+
+**Deploy rules for all databases configured in your firebase.json**
+
+`firebase deploy --only firestore:rules`
+
+**Deploy rules for the specified database configured in your firebase.json**
+
+`firebase deploy --only firestore:<databaseId>`
+
 # React + Vite (README.md)
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
