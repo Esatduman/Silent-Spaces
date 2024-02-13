@@ -1,7 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App.jsx";
-import "./index.css";
 
 import firebase_cfg from "./firebase_cfg.js";
 import { initializeApp } from "firebase/app";
