@@ -1,4 +1,4 @@
-import { getFirestore, setDoc, doc, collection } from "firebase/firestore";
+import { getFirestore, addDoc, setDoc, doc, collection } from "firebase/firestore";
 import { useContext, useState } from "react";
 import { Context } from "../../components/AuthContext";
 
@@ -6,16 +6,18 @@ export function CreateASpace() {
     const db = getFirestore();
     const {user} = useContext(Context);
 
-    async function createSpace(key, space) {
-        const userDoc = doc(db, "users", user.uid);
-        const spacesColl = collection(userDoc, "spaces");
-        const spaceDoc = doc(spacesColl, "key");
-        await setDoc(spaceDoc, space)
-        .then(() => {
-            console.log("space created");
-        })
-        .catch((error) => {
-            console.log(error);
+    async function createSpace(space) {
+        // Revising.
+        // const userDoc = doc(db, "users", user.uid);
+        // const spacesColl = collection(userDoc, "spaces");
+        // const spaceDoc = doc(spacesColl, "key");
+        const spacesCollRef = collection(db, "spaces");
+        await addDoc(spacesCollRef, {
+            ...space
+        }).then(() => {
+            console.log("Success");
+        }).catch((err) => {
+            console.log(err);
         });
     }
 
@@ -40,9 +42,11 @@ export function CreateASpace() {
         </div>
         <button onClick={(e) => {
             e.preventDefault();
-            createSpace(spaceName, {
+            createSpace({
+                name: spaceName,
                 displayName: spaceDisplayName,
                 desc: desc,
+                owner: user.uid,
             });
             }}>Sign Up</button>
     </form>
