@@ -8,6 +8,7 @@ import { Protected } from "./components/Protected";
 import { Dashboard } from "./routes/Dashboard";
 import { About } from "./routes/About";
 import { Body } from "./components/Body";
+import { FindASpace } from "./routes/dashboard/FindASpace";
 
 const router = createBrowserRouter([
     {
@@ -33,7 +34,12 @@ const router = createBrowserRouter([
             },
             {
                 path: '/dashboard',
-                element: <Protected><Dashboard></Dashboard></Protected>
+                element: <Protected><Dashboard></Dashboard></Protected>,
+                children: [{
+                        // path: 'find-a-space',
+                        index: true,
+                        element: <FindASpace></FindASpace>,
+                    },]
             },
             {
                 path: '/about',

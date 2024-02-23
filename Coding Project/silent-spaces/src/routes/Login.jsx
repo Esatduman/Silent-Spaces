@@ -12,7 +12,7 @@ export function Login() {
         signInWithEmailAndPassword(auth, email, pass)
         .then((user) => {
             console.log(user)
-            navigate('/home');
+            navigate('/dashboard');
         })
         .catch((error) => {
             console.log(error)
