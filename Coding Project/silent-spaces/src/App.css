@@ -28,14 +28,14 @@ div {
     margin: 0.5rem;
 }
 
-.space-view {
+.space-list {
     display: flex;
     flex-wrap: wrap;
     min-height: 300px;
 }
-.space-view > .list {
+.space-list > .space-list-left {
     flex: 1;
 }
-.space-view > .image {
+.space-list > .space-list-right {
     flex: 2;
 }

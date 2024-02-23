@@ -15,16 +15,16 @@ const dummySpaceViewData = {
     ]
 }
 
-export function SpaceView() {
+export function SpaceList() {
     return (<>
-    <div class="space-view">
-        <div class="list">
+    <div class="space-list">
+        <div class="space-list-left">
         <ul>
             <li>Space</li>
             <li>Space</li>
         </ul>
         </div>
-        <div class="image">
+        <div class="space-list-right">
         Image
         </div>
     </div>
