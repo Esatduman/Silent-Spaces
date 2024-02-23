@@ -1,3 +1,5 @@
+import { SpaceCard } from "./SpaceCard";
+
 const dummySpaceViewData = {
     spaces: [
         {
@@ -15,16 +17,16 @@ const dummySpaceViewData = {
     ]
 }
 
-export function SpaceList() {
+export function SpaceList({spaceViewData}) {
+    const viewData = dummySpaceViewData;
     return (<>
-    <div class="space-list">
-        <div class="space-list-left">
+    <div className="space-list">
+        <div className="space-list-left">
         <ul>
-            <li>Space</li>
-            <li>Space</li>
+        {viewData.spaces.map((space) => <li><SpaceCard space={space}></SpaceCard></li>)}
         </ul>
         </div>
-        <div class="space-list-right">
+        <div className="space-list-right">
         Image
         </div>
     </div>

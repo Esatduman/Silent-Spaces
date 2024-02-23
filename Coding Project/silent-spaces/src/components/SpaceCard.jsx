@@ -1,7 +1,7 @@
-export function SpaceCard(space) {
+export function SpaceCard({space}) {
     return (<>
-    <div class="space-card">
-        Name
+    <div className="space-card">
+        @{space.owner}:{space.name}
     </div>
     </>);
 }
