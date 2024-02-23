@@ -1,5 +1,5 @@
 import "./App.css";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { createBrowserRouter, Navigate, RouterProvider } from "react-router-dom";
 import { Home } from "./routes/Home";
 import { Signup } from "./routes/Signup";
 import { Login } from "./routes/Login";
@@ -17,8 +17,11 @@ const router = createBrowserRouter([
         children: [
             {
                 index: true,
+                element: <Home></Home>
+            },
+            {
                 path: "/home",
-                element: <Home></Home>,
+                element: <Navigate to="/"></Navigate>,
             },
             {
                 path: "/login",
