@@ -16,6 +16,7 @@ export function Header() {
                 {Object.entries(links).map(([key, val]) => <NavLink label={key} link={val}></NavLink>)}
                 </ul>
             </nav>
+            <button onClick={() => {handleLogout()}}>Logout.</button>
         </header>
     )
 }

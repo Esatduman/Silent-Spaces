@@ -2,6 +2,11 @@
     max-height: 50px;
 }
 
+.header {
+    display: flex;
+    flex-wrap: wrap;
+}
+
 .header > nav > ul {
     display: flex;
     flex-wrap: wrap;

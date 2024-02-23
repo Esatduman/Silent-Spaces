@@ -16,6 +16,5 @@ export function Home() {
     <Header />
     <div>
         <h1>Home.</h1>
-        <button onClick={() => {handleLogout()}}>Logout.</button>
     </div></>
 }
