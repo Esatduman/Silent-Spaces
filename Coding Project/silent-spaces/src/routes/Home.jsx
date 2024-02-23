@@ -1,5 +1,6 @@
 import { signOut, getAuth } from "firebase/auth"
 import { Header } from "../components/header/Header";
+import { SpaceView } from "../components/SpaceView";
 
 export function Home() {
     const auth = getAuth()

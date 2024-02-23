@@ -17,3 +17,20 @@
 .header > nav > ul > li > a {
     text-decoration: none;
 }
+
+/* div { for //debug purposes
+    border-style: dashed;
+    margin: 0.5rem;
+} */
+
+.space-view {
+    display: flex;
+    flex-wrap: wrap;
+    min-height: 300px;
+}
+.space-view > .list {
+    flex: 1;
+}
+.space-view > .image {
+    flex: 2;
+}
