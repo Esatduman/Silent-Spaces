@@ -1,14 +1,12 @@
-import { Navigate } from "react-router-dom";
-import { useContext } from "react";
-import { Context } from "./AuthContext";
+import { Outlet } from "react-router-dom";
 import { Header } from "./header/Header";
 
-export function Body({children}) {
+export function Body() {
     return (
         <>
         <Header></Header>
         <main>
-        {children}
+        <Outlet />
         </main>
         <footer></footer>
         </>
