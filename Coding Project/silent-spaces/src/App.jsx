@@ -4,29 +4,35 @@ import { Home } from "./routes/Home";
 import { Signup } from "./routes/Signup";
 import { Login } from "./routes/Login";
 import { AuthContext, Context } from "./components/AuthContext";
-import { Protected } from "./routes/Protected";
+import { Protected } from "./components/Protected";
 import { Dashboard } from "./routes/Dashboard";
+import { About } from "./routes/About";
+import { Body } from "./components/Body";
 
 const router = createBrowserRouter([
     {
         path: "/",
-        element: <Home></Home>,
+        element: <Body><Home></Home></Body>,
     },
     {
         path: "/home",
-        element: <Home></Home>,
+        element: <Body><Home></Home></Body>,
     },
     {
         path: "/login",
-        element: <Login></Login>,
+        element: <Body><Login></Login></Body>,
     },
     {
         path: "/signup",
-        element: <Signup></Signup>,
+        element: <Body><Signup></Signup></Body>,
     },
     {
         path: '/dashboard',
-        element: <Protected><Dashboard></Dashboard></Protected>
+        element: <Protected><Body><Dashboard></Dashboard></Body></Protected>
+    },
+    {
+        path: '/about',
+        element: <Body><About></About></Body>
     }
 ]);
 

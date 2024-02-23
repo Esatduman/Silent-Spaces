@@ -17,6 +17,8 @@ export function Signup() {
     };
 
     return (
+        <>
+        <Header></Header>
         <div>
             <h1>Sign Up.</h1>
             <form>
@@ -28,5 +30,6 @@ export function Signup() {
                     }}>Sign Up</button>
             </form>
         </div>
+        </>
     );
 }
