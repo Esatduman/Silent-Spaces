@@ -1,9 +1,9 @@
-
+import { Link } from "react-router-dom"
 
 export function NavLink({label, link}) {
     return (
         <li>
-            <a href={link}>{label}</a>
+            <Link to={link}>{label}</Link>
         </li>
     )
 }

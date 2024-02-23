@@ -10,6 +10,11 @@ const links = {
     "About": "/about",
 }
 
+const authLinks = {
+    "Login": "/login",
+    "Signup": "/signup",
+}
+
 export function Header() {
     const {user} = useContext(Context);
 
@@ -29,6 +34,7 @@ export function Header() {
             <nav>
                 <ul>
                 {Object.entries(links).map(([key, val]) => <NavLink label={key} link={val}></NavLink>)}
+                {!user && Object.entries(authLinks).map(([key, val]) => <NavLink label={key} link={val}></NavLink>)}
                 </ul>
             </nav>
             {user &&

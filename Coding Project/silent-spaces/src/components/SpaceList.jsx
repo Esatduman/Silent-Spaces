@@ -13,6 +13,12 @@ const dummySpaceViewData = {
             name: 'sce-inner-circle',
             displayName: 'Student Center East - Inner Circle',
             rating: 3,
+        },
+        {
+            owner: 'uic',
+            name: 'sele-computer-lab',
+            displayName: 'SELE - Computer Lab',
+            rating: 2,
         }
     ]
 }
