@@ -1,5 +1,5 @@
 import { signOut, getAuth } from "firebase/auth"
-import logo from "../assets/SIlent-Spaces-New.png";
+import { Header } from "../components/header/Header";
 
 export function Home() {
     const auth = getAuth()
@@ -12,9 +12,10 @@ export function Home() {
         }
     }
 
-    return <div>
+    return <>
+    <Header />
+    <div>
         <h1>Home.</h1>
-        <img className="header-logo" src={logo}></img>
         <button onClick={() => {handleLogout()}}>Logout.</button>
-    </div>
+    </div></>
 }

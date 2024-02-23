@@ -3,7 +3,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { Home } from "./routes/Home";
 import { Signup } from "./routes/Signup";
 import { Login } from "./routes/Login";
-import { AuthContext } from "./components/AuthContext";
+import { AuthContext, Context } from "./components/AuthContext";
 import { Protected } from "./routes/Protected";
 import { Dashboard } from "./routes/Dashboard";
 
