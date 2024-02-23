@@ -5,7 +5,7 @@ import { Signup } from "./routes/Signup";
 import { Login } from "./routes/Login";
 import { AuthContext } from "./components/AuthContext";
 import { Protected } from "./routes/Protected";
-import { Dashboard } from "./components/Dashboard";
+import { Dashboard } from "./routes/Dashboard";
 
 const router = createBrowserRouter([
     {
