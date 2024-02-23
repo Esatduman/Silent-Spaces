@@ -5,15 +5,16 @@ import { Signup } from "./routes/Signup";
 import { Login } from "./routes/Login";
 import { AuthContext } from "./components/AuthContext";
 import { Protected } from "./routes/Protected";
+import { Dashboard } from "./components/Dashboard";
 
 const router = createBrowserRouter([
     {
         path: "/",
-        element: <Protected><Home></Home></Protected>,
+        element: <Home></Home>,
     },
     {
         path: "/home",
-        element: <Protected><Home></Home></Protected>,
+        element: <Home></Home>,
     },
     {
         path: "/login",
@@ -23,6 +24,10 @@ const router = createBrowserRouter([
         path: "/signup",
         element: <Signup></Signup>,
     },
+    {
+        path: '/dashboard',
+        element: <Protected><Dashboard></Dashboard></Protected>
+    }
 ]);
 
 function App() {
