@@ -1,11 +1,14 @@
 .header-logo {
-    max-height: 50px;
+    max-height: 110px;
 }
 
 .header {
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
 }
+
 
 .header > button {
     margin-left: auto;
