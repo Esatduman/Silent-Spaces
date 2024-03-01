@@ -12,7 +12,7 @@
 
 .header > button {
     margin-left: auto;
-    margin-right: 0;
+    margin-right: 40px; /* button needed a gap */
 }
 
 .header > nav > ul {
@@ -20,10 +20,52 @@
     flex-wrap: wrap;
     list-style: none;
     gap: 2rem;
+    
 }
 
-.header > nav > ul > li > a {
+/* .header > nav > ul > li > a {
     text-decoration: none;
+    color: black;
+    font-size: 20px;
+} */
+
+/* Add this CSS for underline animation */
+.header > nav > ul > li > a {
+    position: relative;
+    text-decoration: none;
+    color: black;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.header > nav > ul > li > a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -2px; /* Adjust this value to control the distance of the underline from the text */
+    width: 0;
+    height: 4px; /* Adjust this value to control the thickness of the underline */
+    background-color: black; /* Change this to your desired underline color */
+    transition: width 0.3s ease; /* Add transition for smooth animation */
+    border-radius:4px;
+}
+
+.header > nav > ul > li > a:hover::after {
+    width: 100%; /* Expand the underline to cover the width of the text on hover */
+}
+
+.auth-btn {
+  background-color: #ff0000; 
+  border: none;
+  font-weight: bold;
+  border-radius: 10px;
+  color: white;
+  padding: 10px 25px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+    
 }
 
 div {
@@ -39,6 +81,17 @@ div {
 .space-list > .space-list-left {
     flex: 1;
 }
+
+
 .space-list > .space-list-right {
     flex: 2;
 }
+
+.space-list-left li {
+    list-style: none;
+}
+
+.profile_icon{
+    height: 50px;
+    width: 50px;
+  }

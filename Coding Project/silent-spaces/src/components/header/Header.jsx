@@ -38,7 +38,7 @@ export function Header() {
                 </ul>
             </nav>
             {user &&
-            <button className="auth-btn" onClick={(e) => {handleLogout(); e.preventDefault();}}>Logout.</button>
+            <button className="auth-btn" onClick={(e) => {handleLogout(); e.preventDefault();}}>Logout</button>
             }
         </header>
     )
