@@ -87,8 +87,27 @@ div {
     flex: 2;
 }
 
+.space-list {
+    background-color: #646464a6;
+  color: #fff;
+  opacity: .5;
+}
+
 .space-list-left li {
     list-style: none;
+    
+}
+
+
+.space-list-left ul {
+    padding: 0; /*to remove the padding of the card-list */
+}
+
+.space-card{
+    background-color: white;
+    color:black;
+    
+    
 }
 
 .profile_icon{
