@@ -33,7 +33,7 @@ export function SpaceList({spaceViewData}) {
         </ul>
         </div>
         <div className="space-list-right">
-        Image
+        Google Maps Api 
         </div>
     </div>
     </>);
