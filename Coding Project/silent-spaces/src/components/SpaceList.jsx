@@ -1,4 +1,5 @@
 import { SpaceCard } from "./SpaceCard";
+import GoogleMapAPI from "./GoogleMapAPI";
 
 const dummySpaceViewData = {
     spaces: [
@@ -33,7 +34,7 @@ export function SpaceList({spaceViewData}) {
         </ul>
         </div>
         <div className="space-list-right">
-        Google Maps Api 
+        <GoogleMapAPI /> 
         </div>
     </div>
     </>);
