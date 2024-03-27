@@ -1,41 +1,51 @@
-import { getFirestore, addDoc, setDoc, doc, collection } from "firebase/firestore";
-import { useContext, useState } from "react";
+import { getFirestore, doc, getDoc, writeBatch } from "firebase/firestore";
+import { useContext, useState, useEffect } from "react";
 import { Context } from "../../components/AuthContext";
 
 export function SetUsername() {
     const db = getFirestore();
     const {user} = useContext(Context);
 
-    async function setUsername(space) {
-        const spacesCollRef = collection(db, "spaces");
-        await addDoc(spacesCollRef, {
-            ...space
-        }).then(() => {
-            console.log("Success");
-        }).catch((err) => {
-            console.log(err);
-        });
+    async function requestUsernameSet(uid, username) {
+        const userDoc = doc(db, "users", uid);
+        const usernameDoc = doc(db, "usernames", username);
+        const batch = writeBatch(db);
+        batch.set(userDoc, { username });
+        batch.set(usernameDoc, { uid });
+        await batch.commit();
     }
 
-    const [spaceName, setSpaceName] = useState("");
-    const [spaceDisplayName, setSpaceDisplayName] = useState("");
-    const [desc, setSpaceDesc] = useState("");
+    const [username, setUsername] = useState("");
+    const [error, setError] = useState("");
+    useEffect(() => {
+        const getData = setTimeout(async() => {
+            if (username.length >= 3 && username.length <= 15) {
+                const ref = doc(db, "usernames", username);
+                const docRef = await getDoc(ref);
+                const usernameAvailable = !docRef.exists();
+                if(usernameAvailable)
+                    setError("Username is available.");
+                else
+                    setError("Username is not available.");
+            } else {
+                setError("Username must be atleast 3 characters and 15 characters maximum.");
+            }
+        }, 500)
+    
+        return () => clearTimeout(getData)
+      }, [username]);
 
     return (<>
     <h1>Set Guide Username</h1>
-    <form>
+    <form id="guide-username">
+        {error && <p>Error: {error}</p>}
         <div>
             Username
-            <input onChange={(e) => {setSpaceName(e.target.value)}} type="text" placeholder="A 'username' for your space."></input>
+            <input onChange={(e) => {setUsername(e.target.value);}} type="text" placeholder="A specific id for your guide profile."></input>
         </div>
         <button onClick={(e) => {
             e.preventDefault();
-            setUsername({
-                name: spaceName,
-                displayName: spaceDisplayName,
-                desc: desc,
-                owner: user.uid,
-            });
+            requestUsernameSet(user.uid, username);
             }}>Sign Up</button>
     </form>
     </>);
