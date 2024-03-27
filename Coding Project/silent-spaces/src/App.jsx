@@ -10,6 +10,7 @@ import { About } from "./routes/About";
 import { Body } from "./components/Body";
 import { FindASpace } from "./routes/dashboard/FindASpace";
 import { CreateASpace } from "./routes/dashboard/CreateASpace";
+import { SetUsername } from "./routes/dashboard/SetUsername";
 
 const router = createBrowserRouter([
     {
@@ -44,6 +45,10 @@ const router = createBrowserRouter([
                 {
                     path: 'create-a-space',
                     element: <CreateASpace></CreateASpace>
+                },
+                {
+                    path: 'set-user',
+                    element: <SetUsername></SetUsername>
                 }]
             },
             {

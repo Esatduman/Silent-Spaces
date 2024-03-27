@@ -3,8 +3,51 @@ rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
     match /{document=**} {
-      allow read, write: if
-        request.time < timestamp.date(2024, 6, 30);
+      match /users/{userId} {
+      	allow read;
+        allow create: if isValidUser(userId);
+        allow delete: if canDeleteUser(userId);
+      }
+
+      function isValidUser(userId) {
+        let isOwner = request.auth.uid == userId;
+      	let username = request.resource.data.username;
+        let createdValidUsername = existsAfter(/databases/$(database)/documents/usernames/$(username));
+        return isOwner && createdValidUsername;
+      }
+
+      function canDeleteUser(userId) {
+        let isOwner = request.auth.uid == userId;
+      	let username = request.resource.data.username;
+        let deletingValidUsername = !existsAfter(/databases/$(database)/documents/usernames/$(username));
+        return isOwner && deletingValidUsername;
+      }
+      
+      match /usernames/{username} {
+      	allow read;
+        allow create: if isValidUsername(username);
+        allow delete: if canDeleteUsername(username);
+      }
+      
+      function isValidUsername(username) {
+        let isOwner = request.auth.uid == request.resource.data.uid;
+        let isValidLength = username.size() >= 3 && username.size() <= 15;
+        let isValidUserDoc = getAfter(/databases/$(database)/documents/users/$(request.auth.uid)).data.username == username;
+        
+        return isOwner && isValidLength && isValidUserDoc;     
+      }
+
+      function canDeleteUsername(username) {
+        let isOwner = request.auth.uid == request.resource.data.uid;
+        let userDoc = get(/databases/$(database)/documents/users/$(request.auth.uid));
+        let deletingUser = !existsAfter(userDoc);
+        return isOwner && deletingUser;
+      }
+
+      match /spaces/{spaceId} {
+      	allow read;
+        allow write: if request.auth.uid == request.resource.data.owner;
+      }
     }
   }
 }

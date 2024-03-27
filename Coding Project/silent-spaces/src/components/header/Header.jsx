@@ -33,8 +33,8 @@ export function Header() {
             <img className="header-logo" src={logo}></img>
             <nav>
                 <ul>
-                {Object.entries(links).map(([key, val]) => <NavLink label={key} link={val}></NavLink>)}
-                {!user && Object.entries(authLinks).map(([key, val]) => <NavLink label={key} link={val}></NavLink>)}
+                {Object.entries(links).map(([key, val]) => <NavLink key={key} label={key} link={val}></NavLink>)}
+                {!user && Object.entries(authLinks).map(([key, val]) => <NavLink key={key} label={key} link={val}></NavLink>)}
                 </ul>
             </nav>
             {user &&
