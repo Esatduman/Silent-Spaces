@@ -67,11 +67,6 @@
     
 }
 
-div {
-    border-style: dashed;
-    margin: 0.5rem;
-}
-
 .space-list {
     display: flex;
     flex-wrap: wrap;
@@ -108,8 +103,3 @@ div {
     
     
 }
-
-.profile_icon{
-    height: 50px;
-    width: 50px;
-  }
