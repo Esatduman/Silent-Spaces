@@ -32,7 +32,7 @@ export default function GoogleMapAPI () {
     <div>
       <GoogleMap
         mapContainerStyle={mapContainerStyle}
-        zoom={10}
+        zoom={80}
         center={center}
       >
         <Marker position={center} />
