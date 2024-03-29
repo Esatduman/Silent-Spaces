@@ -16,7 +16,7 @@ export function SpaceView() {
         if (docSnap.exists()) {
             const foundData = docSnap.data();
             console.log("Document data:", foundData);
-            setExistingSpaceData(foundData);
+            setExistingSpaceData({ ...foundData, id: docSnap.id });
         } else {
             console.log("No doc found");
         }
