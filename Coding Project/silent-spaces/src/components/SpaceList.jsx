@@ -34,7 +34,33 @@ export function SpaceList({spaceViewData}) {
         </ul>
         </div>
         <div className="space-list-right">
-        <GoogleMapAPI /> 
+        <APIProvider apiKey={'AIzaSyC26_AOm2ZW6U8CbYkjtwwk2WEN09FAAUg'}>
+            <Map defaultCenter={defaultLoc} defaultZoom={80}>
+            <Marker position={defaultLoc} />
+
+            {viewData.spaces.map((space) =>
+            <>
+            
+            <AdvancedMarker
+            ref={markerRef}
+            onClick={() => setShowSpaceInfo(true)}
+            position={{lat: 28, lng: -82}}
+            title={'AdvancedMarker that opens an Infowindow when clicked.'} />
+            {showSpaceInfo && (
+            <InfoWindow
+            anchor={marker}
+            maxWidth={200}
+            onCloseClick={() => setShowSpaceInfo(false)}>
+            This is an example for the{' '}
+            <code style={{whiteSpace: 'nowrap'}}>&lt;AdvancedMarker /&gt;</code>{' '}
+            combined with an Infowindow.
+            </InfoWindow>
+            )}
+            </>
+            )}
+            
+            </Map>
+        </APIProvider>
         </div>
     </div>
     </>);
