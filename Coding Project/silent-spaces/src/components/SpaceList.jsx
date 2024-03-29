@@ -28,6 +28,11 @@ const dummySpaceViewData = {
     ]
 }
 
+const defaultLoc = {
+    latitude: 41.8676287,
+    longitude: -87.6482378
+}
+
 export function SpaceList({spaceViewData}) {
     const db = getFirestore();
     const { getLocation, location, error } = useGeoLocation();
