@@ -109,6 +109,9 @@ header > nav > ul > li > a:hover::after {
 .space-card{
     background-color: white;
     color:black;
-    
-    
 }
+
+.space-card.selected {
+    background-color: #848484;
+}
+

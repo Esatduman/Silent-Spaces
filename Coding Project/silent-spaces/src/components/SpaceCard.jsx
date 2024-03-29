@@ -2,7 +2,7 @@ import { getFirestore, getDoc, doc } from "firebase/firestore";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 
-export function SpaceCard({space}) {
+export function SpaceCard({space, isSelected}) {
     const db = getFirestore();
     const [username, setUsername] = useState("");
 
@@ -17,8 +17,8 @@ export function SpaceCard({space}) {
     }, []);
     return (<>
     {/* {JSON.stringify(space)} */}
-    <div className="space-card">
-        @{username}:{space.name}
+    <div className={isSelected ? "space-card selected" : "space-card"} >
+        <span className="slug">@{username}:{space.name}</span>
         <br />
         {space.displayName}
         <br />

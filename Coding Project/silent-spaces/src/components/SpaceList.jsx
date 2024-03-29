@@ -79,13 +79,21 @@ export function SpaceList({spaceViewData}) {
 
     const [spaces, setSpaces] = useState([]);
     const [showSpaceInfo, setShowSpaceInfo] = useState(true);
+
+    const [lastClicked, setLastClicked] = useState("");
     const [markerRef, marker] = useAdvancedMarkerRef();
     
+    useEffect(() => {console.log(lastClicked)}, [lastClicked]);
+
     return (<>
     <div className="space-list">
         <div className="space-list-left">
         <ul>
-        {spaces.map((space) => <li key={space.name}><SpaceCard space={space}></SpaceCard></li>)}
+        {spaces.map((space) => 
+            <li key={space.name}>
+                <SpaceCard space={space} isSelected={lastClicked == space.id}></SpaceCard>
+            </li>
+        )}
         </ul>
         </div>
         <div className="space-list-right">
@@ -95,7 +103,7 @@ export function SpaceList({spaceViewData}) {
 
             {spaces.map((space) =>
             <>
-            <Marker position={{lat: space.lat, lng: space.lng}} />
+            <Marker position={{lat: space.lat, lng: space.lng}} onClick={(e) => {setLastClicked(space.id)}} />
             {/* <AdvancedMarker
             ref={markerRef}
             onClick={() => setShowSpaceInfo(true)}
