@@ -8,8 +8,9 @@ export function Home() {
     <div class = "div1">
         <h1 class = "title">Silent Spaces Locator</h1>
         <h2 class = "name">By CS440 Group 5: Esat Duman, Jonathan Juarez, Kent Lizardo, Jose Tejeda</h2>
-        <h3 class = "objective">What is the purpose of Silent Spaces Locator?</h3>
     </div>
+    
+    <h3 class = "objective">What is the purpose of Silent Spaces Locator?</h3>
 
     <div class = "div2">
         <p class = "home_purpose_text">
