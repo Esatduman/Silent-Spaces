@@ -2,7 +2,7 @@ import logo from "@assets/SIlent-Spaces-New.png";
 import { NavLink } from "./NavLink";
 import { useContext } from "react";
 import { Context } from "../AuthContext";
-import { signOut, getAuth } from "firebase/auth";
+import { getAuth } from "firebase/auth";
 
 const links = {
     "Home": "/home",
@@ -19,14 +19,6 @@ export function Header() {
     const {user} = useContext(Context);
 
     const auth = getAuth();
-
-    async function handleLogout() {
-        try {
-            await signOut(auth)
-        } catch (error) {
-            console.log(error)
-        }
-    }
 
     return (
         <header>

@@ -4,11 +4,13 @@ import "./dashboard.scss";
 import profileIcon from "@assets/login-user-name-1 1.png"
 import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { doc, getDoc, getFirestore } from "firebase/firestore";
+import { doc, getDoc, getFirestore} from "firebase/firestore";
+import { signOut, getAuth } from "firebase/auth";
 
 export function Dashboard() {
     const outlet = useOutlet();
     const db = getFirestore();
+    const auth = getAuth();
     const { user } = useContext(Context);
 
     useEffect(() => {
@@ -21,6 +23,14 @@ export function Dashboard() {
     }
 
     const [isUserGuide, setIsUserGuide] = useState(false);
+
+    async function handleLogout() {
+        try {
+            await signOut(auth);
+        } catch (error) {
+            console.log(error);
+        }
+    }
 
     return (
     <>
