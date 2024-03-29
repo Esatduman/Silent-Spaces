@@ -1,4 +1,5 @@
 import { getFirestore, getDoc, doc } from "firebase/firestore";
+import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 export function SpaceCard({space}) {
@@ -15,11 +16,13 @@ export function SpaceCard({space}) {
         retrieveUsername();
     }, []);
     return (<>
-    {JSON.stringify(space)}
+    {/* {JSON.stringify(space)} */}
     <div className="space-card">
         @{username}:{space.name}
         <br />
         {space.displayName}
+        <br />
+        <Link to={"/dashboard/spaceview/" + space.id}>go to</Link>
     </div>
     </>);
 }

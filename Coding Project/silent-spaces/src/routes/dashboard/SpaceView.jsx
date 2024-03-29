@@ -3,6 +3,7 @@ import { useContext, useEffect, useState } from "react";
 import { useParams } from 'react-router-dom'
 import { Context } from "../../components/AuthContext";
 import { Navigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export function SpaceView() {
     const db = getFirestore();
@@ -32,8 +33,17 @@ export function SpaceView() {
     }
 
     return (<>
-        <section>
-            {JSON.stringify(existingSpaceData)}
-        </section>
+        {existingSpaceData ? (<article>
+            <h1>{existingSpaceData.displayName}</h1>
+            <h2>{existingSpaceData.name}</h2>
+            <section>
+                {existingSpaceData.desc}
+            </section>
+            {user.uid == existingSpaceData.owner && 
+            <Link to={"/dashboard/create-a-space/" + existingSpaceData.id}>Edit</Link>}
+        </article>)
+        :
+        <article>Loading...</article>
+        }
     </>);
 }

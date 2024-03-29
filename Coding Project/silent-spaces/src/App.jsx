@@ -10,7 +10,7 @@ import { About } from "./routes/About";
 import { Body } from "./components/Body";
 import { FindASpace } from "./routes/dashboard/FindASpace";
 import { CreateASpace } from "./routes/dashboard/CreateASpace";
-import { SetUsername } from "./routes/dashboard/SetUsername";
+import { CreateGuideProfile } from "./routes/dashboard/CreateGuideProfile";
 import { SpaceView } from "./routes/dashboard/SpaceView";
 
 const router = createBrowserRouter([
@@ -60,8 +60,8 @@ const router = createBrowserRouter([
                     element: <SpaceView></SpaceView>
                 },
                 {
-                    path: 'set-user',
-                    element: <SetUsername></SetUsername>
+                    path: 'create-guide',
+                    element: <CreateGuideProfile></CreateGuideProfile>
                 }]
             },
             {

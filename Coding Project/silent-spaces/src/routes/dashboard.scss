@@ -2,3 +2,20 @@
     height: 50px;
     width: 50px;
 }
+
+.dashboard-header {
+    background-color: #f8f8f8;
+}
+
+nav {
+    display: flex;
+}
+
+ul {
+    gap: 2rem;
+    list-style-type: none;
+}
+
+li {
+    // display: inline;
+}
