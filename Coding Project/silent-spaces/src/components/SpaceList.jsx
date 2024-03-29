@@ -95,8 +95,8 @@ export function SpaceList({spaceViewData}) {
 
             {viewData.spaces.map((space) =>
             <>
-            
-            <AdvancedMarker
+            <Marker position={{latitude: space.latitude, longitude: space.longitude}} />
+            {/* <AdvancedMarker
             ref={markerRef}
             onClick={() => setShowSpaceInfo(true)}
             position={{lat: 28, lng: -82}}
@@ -110,7 +110,7 @@ export function SpaceList({spaceViewData}) {
             <code style={{whiteSpace: 'nowrap'}}>&lt;AdvancedMarker /&gt;</code>{' '}
             combined with an Infowindow.
             </InfoWindow>
-            )}
+            )} */}
             </>
             )}
             
