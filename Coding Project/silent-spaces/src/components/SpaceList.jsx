@@ -61,7 +61,7 @@ export function SpaceList({spaceViewData}) {
         }
         const allSpaceDatas = [];
         for(const doc of matchingDocs) {
-            allSpaceDatas.push(doc.data());
+            allSpaceDatas.push({...doc.data(), id: doc.id});
         }
         setSpaces(allSpaceDatas);
         return matchingDocs;
