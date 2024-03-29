@@ -1,14 +1,9 @@
-<<<<<<< HEAD
 import { useEffect, useState } from "react";
 import { SpaceCard } from "./SpaceCard";
 import {APIProvider, Map, Marker, AdvancedMarker, InfoWindow, useAdvancedMarkerRef} from '@vis.gl/react-google-maps';
 import useGeoLocation from "./useGeoLocation";
 import { collection, query, orderBy, startAt, endAt, getDocs, getFirestore } from 'firebase/firestore';
 import { geohashQueryBounds, distanceBetween } from "geofire-common";
-=======
-import { SpaceCard } from "./SpaceCard";
-import GoogleMapAPI from "./GoogleMapAPI";
->>>>>>> 15caea62afe3d2627be17c0cb7f1962441d0effd
 
 const dummySpaceViewData = {
     spaces: [
