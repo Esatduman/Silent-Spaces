@@ -80,11 +80,10 @@ header > nav > ul > li > a:hover::after {
     min-height: 400px;
 }
 .space-list > .space-list-left {
-    flex: 2;
+    flex: 1;
     border: 5px solid #c45050;
     width: 200px;
 }
-
 
 .space-list > .space-list-right {
     flex: 1;
