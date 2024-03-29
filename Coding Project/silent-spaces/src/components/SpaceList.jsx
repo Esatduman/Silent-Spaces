@@ -1,9 +1,14 @@
+<<<<<<< HEAD
 import { useEffect, useState } from "react";
 import { SpaceCard } from "./SpaceCard";
 import {APIProvider, Map, Marker, AdvancedMarker, InfoWindow, useAdvancedMarkerRef} from '@vis.gl/react-google-maps';
 import useGeoLocation from "./useGeoLocation";
 import { collection, query, orderBy, startAt, endAt, getDocs, getFirestore } from 'firebase/firestore';
 import { geohashQueryBounds, distanceBetween } from "geofire-common";
+=======
+import { SpaceCard } from "./SpaceCard";
+import GoogleMapAPI from "./GoogleMapAPI";
+>>>>>>> 15caea62afe3d2627be17c0cb7f1962441d0effd
 
 const dummySpaceViewData = {
     spaces: [
@@ -27,8 +32,6 @@ const dummySpaceViewData = {
         }
     ]
 }
-
-const defaultLoc = { lat: 41.86867120799108, lng: -87.64836798595782 };
 
 export function SpaceList({spaceViewData}) {
     const db = getFirestore();
@@ -82,7 +85,6 @@ export function SpaceList({spaceViewData}) {
     const [showSpaceInfo, setShowSpaceInfo] = useState(true);
     const [markerRef, marker] = useAdvancedMarkerRef();
     
-
     return (<>
     <div className="space-list">
         <div className="space-list-left">
