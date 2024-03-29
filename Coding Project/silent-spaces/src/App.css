@@ -77,15 +77,18 @@ header > nav > ul > li > a:hover::after {
 .space-list {
     display: flex;
     flex-wrap: wrap;
-    min-height: 300px;
+    min-height: 400px;
 }
 .space-list > .space-list-left {
-    flex: 1;
+    flex: 2;
+    border: 5px solid #c45050;
+    width: 200px;
 }
 
 
 .space-list > .space-list-right {
-    flex: 2;
+    flex: 1;
+    border: 5px solid #000;
 }
 
 .space-list {

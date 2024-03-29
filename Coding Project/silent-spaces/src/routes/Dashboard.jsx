@@ -11,12 +11,21 @@ export function Dashboard() {
     return (
     <>
     <div>
-        <h1>Dashboard.</h1>
+        {/* <h1>Dashboard.</h1> */}
         {user && <img className="profile_icon" src={profileIcon}></img>}
         <div>
             {outlet || <>Error: Unknown dashboard page.</>}
         </div>
     </div>
+    
+    {/* <div className="card">
+      <img src="img_avatar.png" alt="Avatar" style={{width: '100%'}} />
+      <div className="container">
+        <h4><b>John Doe</b></h4> 
+        <p>Architect & Engineer</p> 
+      </div>
+    </div> */}
+        
     </>
     );
 }
