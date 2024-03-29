@@ -1,21 +1,22 @@
 import { getFirestore, addDoc, setDoc, doc, collection } from "firebase/firestore";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Context } from "../../components/AuthContext";
 import useGeoLocation from "../../components/useGeoLocation";
+import { geohashForLocation } from "geofire-common";
 
 export function CreateASpace() {
     const db = getFirestore();
     const {user} = useContext(Context);
     const { getLocation, location, error } = useGeoLocation();
 
-    async function createSpace(space) {
-        // Revising.
-        // const userDoc = doc(db, "users", user.uid);
-        // const spacesColl = collection(userDoc, "spaces");
-        // const spaceDoc = doc(spacesColl, "key");
+    async function createSpace(space, loc) {
         const spacesCollRef = collection(db, "spaces");
+        const geohash = geohashForLocation([loc.latitude, loc.longitude]);
         await addDoc(spacesCollRef, {
-            ...space
+            ...space,
+            geohash,
+            lat: loc.latitude,
+            lng: loc.longitude,
         }).then(() => {
             console.log("Success");
         }).catch((err) => {
@@ -26,10 +27,6 @@ export function CreateASpace() {
     const [spaceName, setSpaceName] = useState("");
     const [spaceDisplayName, setSpaceDisplayName] = useState("");
     const [desc, setSpaceDesc] = useState("");
-
-    const handleClick = () => {
-        getLocation();
-    };
 
     return (<>
     <h1>Create a Space!</h1>
@@ -48,7 +45,11 @@ export function CreateASpace() {
         </section>
         <section>
             Location
-            {location || <>No location <button onClick={handleClick}>Get Current Location</button></>}
+            {location ? (
+                <p>Latitude: {location.latitude}, Longitude: {location.longitude}</p>
+            ) : (
+                <>No location <button onClick={(e) => {getLocation(); e.preventDefault()}}>Get Current Location</button></>
+            )}
         </section>
         <button onClick={(e) => {
             e.preventDefault();
@@ -57,7 +58,7 @@ export function CreateASpace() {
                 displayName: spaceDisplayName,
                 desc: desc,
                 owner: user.uid,
-            });
+            }, location);
             }}>Create Space</button>
     </form>
     </>);
