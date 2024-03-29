@@ -1,10 +1,12 @@
 import { getFirestore, addDoc, setDoc, doc, collection } from "firebase/firestore";
 import { useContext, useState } from "react";
 import { Context } from "../../components/AuthContext";
+import useGeoLocation from "../../components/useGeoLocation";
 
 export function CreateASpace() {
     const db = getFirestore();
     const {user} = useContext(Context);
+    const { getLocation, location, error } = useGeoLocation();
 
     async function createSpace(space) {
         // Revising.
@@ -25,21 +27,29 @@ export function CreateASpace() {
     const [spaceDisplayName, setSpaceDisplayName] = useState("");
     const [desc, setSpaceDesc] = useState("");
 
+    const handleClick = () => {
+        getLocation();
+    };
+
     return (<>
     <h1>Create a Space!</h1>
     <form>
-        <div>
+        <section>
             Space ID
             <input onChange={(e) => {setSpaceName(e.target.value)}} type="text" placeholder="A 'username' for your space."></input>
-        </div>
-        <div>
+        </section>
+        <section>
             Display Name
             <input onChange={(e) => {setSpaceDisplayName(e.target.value)}} type="text" placeholder="A longer form of name"></input>
-        </div>
-        <div>
+        </section>
+        <section>
             Description
             <textarea onChange={(e) => {setSpaceDesc(e.target.value)}} placeholder="A short description of your space."></textarea>
-        </div>
+        </section>
+        <section>
+            Location
+            {location || <>No location <button onClick={handleClick}>Get Current Location</button></>}
+        </section>
         <button onClick={(e) => {
             e.preventDefault();
             createSpace({
@@ -48,7 +58,7 @@ export function CreateASpace() {
                 desc: desc,
                 owner: user.uid,
             });
-            }}>Sign Up</button>
+            }}>Create Space</button>
     </form>
     </>);
 }
