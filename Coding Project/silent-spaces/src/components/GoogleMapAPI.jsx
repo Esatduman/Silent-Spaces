@@ -9,11 +9,12 @@ const center = {
 
 export default function GoogleMapAPI () {
   return (
-      <APIProvider apiKey={'AIzaSyC26_AOm2ZW6U8CbYkjtwwk2WEN09FAAUg'}>
-      <Map defaultCenter={center} defaultZoom={80}>
+        <APIProvider apiKey={'AIzaSyC26_AOm2ZW6U8CbYkjtwwk2WEN09FAAUg'}>
+        <Map defaultCenter={center} defaultZoom={16} style={{ width: '100%', height: '100%' }} >
         <Marker position={center} />
-      </Map>
-      </APIProvider>
+        </Map>
+        </APIProvider>
   );
+
 };
 
