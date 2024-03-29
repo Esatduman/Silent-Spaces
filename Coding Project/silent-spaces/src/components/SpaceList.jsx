@@ -93,9 +93,9 @@ export function SpaceList({spaceViewData}) {
             <Map defaultCenter={defaultLoc} defaultZoom={80}>
             <Marker position={defaultLoc} />
 
-            {viewData.spaces.map((space) =>
+            {spaces.map((space) =>
             <>
-            <Marker position={{latitude: space.latitude, longitude: space.longitude}} />
+            <Marker position={{lat: space.lat, lng: space.lng}} />
             {/* <AdvancedMarker
             ref={markerRef}
             onClick={() => setShowSpaceInfo(true)}
