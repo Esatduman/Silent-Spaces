@@ -13,10 +13,13 @@ header {
     margin: 0 1rem;
 }
 
-
 header > button {
     margin-left: auto;
     margin-right: 40px; /* button needed a gap */
+}
+
+header > nav {
+    padding: 0rem 2rem;
 }
 
 header > nav > ul {
@@ -25,7 +28,6 @@ header > nav > ul {
     list-style: none;
     gap: 2rem;
     padding: 0;
-    background: #ccc;
 }
 
 /* .header > nav > ul > li > a {
@@ -60,7 +62,7 @@ header > nav > ul > li > a:hover::after {
 }
 
 .auth-btn {
-  background-color: #ff0000; 
+  background-color: #c45050; 
   border: none;
   font-weight: bold;
   border-radius: 10px;
@@ -70,7 +72,6 @@ header > nav > ul > li > a:hover::after {
   text-decoration: none;
   display: inline-block;
   font-size: 16px;
-    
 }
 
 .space-list {
