@@ -29,16 +29,16 @@ export function Dashboard() {
             <nav>
                 <ul>
                 <li>
-                    <Link to="">Find A Space</Link>
+                    <Link to="/dashboard">Find A Space</Link>
                 </li>
                 {isUserGuide &&
                 <li>
-                    <Link to="create-a-space">Create A Space</Link>
+                    <Link to="/dashboard/create-a-space">Create A Space</Link>
                 </li>
                 }
                 {!isUserGuide && 
                 <li>
-                    <Link to="create-guide">Create Guide Profile</Link>
+                    <Link to="/dashboard/create-guide">Create Guide Profile</Link>
                 </li>
                 }
                 </ul>
