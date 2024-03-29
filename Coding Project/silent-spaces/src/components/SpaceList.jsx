@@ -50,6 +50,7 @@ export function SpaceList({spaceViewData}) {
 
             {viewData.spaces.map((space) =>
             <>
+            
             <AdvancedMarker
             ref={markerRef}
             onClick={() => setShowSpaceInfo(true)}
