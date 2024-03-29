@@ -47,6 +47,10 @@ const router = createBrowserRouter([
                     element: <CreateASpace></CreateASpace>
                 },
                 {
+                    path: 'create-a-space/:spaceId',
+                    element: <CreateASpace></CreateASpace>
+                },
+                {
                     path: 'set-user',
                     element: <SetUsername></SetUsername>
                 }]
