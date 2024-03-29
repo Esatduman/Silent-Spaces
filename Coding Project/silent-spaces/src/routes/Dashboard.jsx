@@ -13,9 +13,10 @@ export function Dashboard() {
     <>
     <div>
         <div className="dashboard-header">
-            <nav><ul>
+            <nav>
+                <ul>
                 <li>
-                    <Link to="find-a-space">Find A Space</Link>
+                    <Link to="">Find A Space</Link>
                 </li>
                 <li>
                     <Link to="create-a-space">Create A Space</Link>
@@ -23,8 +24,16 @@ export function Dashboard() {
                 <li>
                     <Link to="create-guide">Create Guide Profile</Link>
                 </li>
-            </ul></nav>
-            <div className="profile-info">{user && <img className="profile_icon" src={profileIcon}></img>}</div>
+                </ul>
+            </nav>
+            <div className="profile-info">{user && <img className="profile_icon" src={profileIcon}></img>}
+            {user.displayName || user.email || "(anonymous sign-in)"}
+            </div>
+            {user &&
+            <>
+            <button className="auth-btn" onClick={(e) => {handleLogout(); e.preventDefault();}}>Logout</button>
+            </>
+            }
         </div>
         <div>
             {outlet || <>Error: Unknown dashboard page.</>}

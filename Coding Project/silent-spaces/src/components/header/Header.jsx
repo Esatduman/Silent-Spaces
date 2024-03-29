@@ -37,9 +37,6 @@ export function Header() {
                 {!user && Object.entries(authLinks).map(([key, val]) => <NavLink key={key} label={key} link={val}></NavLink>)}
                 </ul>
             </nav>
-            {user &&
-            <button className="auth-btn" onClick={(e) => {handleLogout(); e.preventDefault();}}>Logout</button>
-            }
         </header>
     )
 }

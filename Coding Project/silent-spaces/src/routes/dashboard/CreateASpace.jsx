@@ -1,12 +1,13 @@
 import { getFirestore, setDoc, doc, collection, writeBatch, arrayUnion, getDoc } from "firebase/firestore";
 import { useContext, useEffect, useState } from "react";
-import { useParams } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
 import { Context } from "../../components/AuthContext";
 import useGeoLocation from "../../components/useGeoLocation";
 import { geohashForLocation } from "geofire-common";
 
 export function CreateASpace() {
     const db = getFirestore();
+    const navigate = useNavigate();
     const { user } = useContext(Context);
     const { getLocation, location, error, setLocation } = useGeoLocation();
     const { spaceId } = useParams();
@@ -36,6 +37,7 @@ export function CreateASpace() {
             const existingDocRef = doc(db, "spaces", spaceId);
             await setDoc(existingDocRef, newData).then(() => {
                 console.log("Success");
+                navigate("/dashboard/spaceview/" + spaceId);
             }).catch((err) => {
                 console.log(err);
             });
@@ -47,6 +49,7 @@ export function CreateASpace() {
             batch.update(userDoc, {spaces: arrayUnion(spaceDoc)});
             await batch.commit().then(() => {
                 console.log("Success");
+                navigate("/dashboard/spaceview/" + spaceDoc.id);
             }).catch((err) => {
                 console.log(err);
             });
