@@ -1,6 +1,6 @@
 .title {
 	// margin-top: 20px;
-	margin-bottom: 40px;
+	margin-bottom: 20px;
 	text-align: center;
 	font-size: 80px;
 }
@@ -12,24 +12,57 @@
 .objective {
 	padding-left: 80px;
 	padding-right: 80px;
-	margin-bottom: 40px;
-	margin-top: 80px;
+	margin-bottom: 30px;
+	margin-top: 40px;
 	text-align: left;
+	font-size: 30px;
 }
 
 .home_purpose_text {
 	padding-left: 80px;
-	padding-right: 700px;
+	padding-right: 120px;
 	text-align: left;
+	flex: 1;
 }
 
 .picture1 {
-	width: 360px;
-	height: 175px;
-	align-self: right;
+	width: 480px;
+	height: 233px;
+	margin-right: 110px;
+	margin-top: 20px;
+	// align-self: right;
 }
 
-.body {
+.features {
+	text-align: center;
+	padding-top: 30px;
+	padding-left: 160px;
+	font-size: 30px;
+}
+
+.features-text {
+	text-align: right;
+}
+
+.picture2 {
+	
+}
+
+
+.div1 {
+	// background-color: lightgray;
+	margin-top: 30px;
+}
+
+.div2 {
+	display : flex;
+	align-items: flex-start;
+	background-color: lightgray;
+}
+
+.div3 {
+	display: flex;
+	align-items: flex-start;
 	background-color: lightgray;
 }
 
