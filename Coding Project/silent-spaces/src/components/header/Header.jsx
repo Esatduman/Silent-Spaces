@@ -29,8 +29,8 @@ export function Header() {
     }
 
     return (
-        <header className="header">
-            <img className="header-logo" src={logo}></img>
+        <header>
+            <div className="logo" style={{'backgroundImage': `url(${logo})`}}></div>
             <nav>
                 <ul>
                 {Object.entries(links).map(([key, val]) => <NavLink key={key} label={key} link={val}></NavLink>)}
