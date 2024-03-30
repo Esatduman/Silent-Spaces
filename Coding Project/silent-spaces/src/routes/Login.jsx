@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth"
-import "./login.scss";
+import "./Login.scss";
 
 export function Login() {
     const [email, setEmail] = useState("")
@@ -19,22 +19,30 @@ export function Login() {
             console.log(error)
         })
     };
+    
 
     return (
         <>
-        <div className="login-container">
-            <div className ="logo">
-                <img src="src/assets/Silent-Spaces-New.png"></img>
-            </div>
-            <h1>Login</h1>
-            <form className ="login_form">
-                <input onChange={(e) => {setEmail(e.target.value)}} type="text" placeholder="Email"></input>
-                <input onChange={(e) => {setPass(e.target.value)}} type="text" placeholder="Password"></input>
-                <button onClick={(e) => {
+
+        <div class="container">
+            <div class="row">
+                <form action="#" class="form active" id="login">
+                    <h2>Login</h2>
+                    <label for="email">Email Address</label>
+                    <div class="pass-reset" onclick="activeInput(this)">
+                        <input name="email" class="email" id="emailInput" placeholder="email" onChange={(e) => {setEmail(e.target.value)}} type="text"></input>
+                    </div>
+                    <label for="password">Password</label>
+                    <div class="pass-reset" onclick="activeInput(this)">
+                        <input class="password" name="password" id="password" placeholder="password " onChange={(e) => {setPass(e.target.value)}} type="text"></input>
+                    </div>
+                    <button class="btn btn-login" onClick={(e) => {
                     e.preventDefault()
                     handleLogin()
-                    }}>Sign In</button>
-            </form>
+                    }}>Login</button>
+                    <p>Don't have an account? <a onclick="changeToRegister()" id="changeToRegister">Sign up</a></p>
+                </form>
+            </div>
         </div>
         </>
     );

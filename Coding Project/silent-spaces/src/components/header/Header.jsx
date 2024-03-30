@@ -2,7 +2,7 @@ import logo from "@assets/SIlent-Spaces-New.png";
 import { NavLink } from "./NavLink";
 import { useContext } from "react";
 import { Context } from "../AuthContext";
-import { signOut, getAuth } from "firebase/auth";
+import { getAuth } from "firebase/auth";
 
 const links = {
     "Home": "/home",
@@ -20,14 +20,6 @@ export function Header() {
 
     const auth = getAuth();
 
-    async function handleLogout() {
-        try {
-            await signOut(auth)
-        } catch (error) {
-            console.log(error)
-        }
-    }
-
     return (
         <header>
             <div className="logo" style={{'backgroundImage': `url(${logo})`}}></div>
@@ -37,9 +29,6 @@ export function Header() {
                 {!user && Object.entries(authLinks).map(([key, val]) => <NavLink key={key} label={key} link={val}></NavLink>)}
                 </ul>
             </nav>
-            {user &&
-            <button className="auth-btn" onClick={(e) => {handleLogout(); e.preventDefault();}}>Logout</button>
-            }
         </header>
     )
 }

@@ -2,7 +2,7 @@ import { getFirestore, doc, getDoc, writeBatch } from "firebase/firestore";
 import { useContext, useState, useEffect } from "react";
 import { Context } from "../../components/AuthContext";
 
-export function SetUsername() {
+export function CreateGuideProfile() {
     const db = getFirestore();
     const {user} = useContext(Context);
 

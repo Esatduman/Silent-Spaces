@@ -67,7 +67,7 @@ header > nav > ul > li > a:hover::after {
   font-weight: bold;
   border-radius: 10px;
   color: white;
-  padding: 10px 25px;
+  padding: 0.2rem 1rem;
   text-align: center;
   text-decoration: none;
   display: inline-block;
@@ -77,15 +77,17 @@ header > nav > ul > li > a:hover::after {
 .space-list {
     display: flex;
     flex-wrap: wrap;
-    min-height: 300px;
+    min-height: 400px;
 }
 .space-list > .space-list-left {
     flex: 1;
+    border: 5px solid #c45050;
+    width: 200px;
 }
 
-
 .space-list > .space-list-right {
-    flex: 2;
+    flex: 1;
+    border: 5px solid #000;
 }
 
 .space-list {
@@ -107,9 +109,10 @@ header > nav > ul > li > a:hover::after {
 .space-card{
     background-color: white;
     color:black;
-    
-    
 }
 
 
-/* Log In CSS - Esat Duman */
+.space-card.selected {
+    background-color: #848484;
+}
+

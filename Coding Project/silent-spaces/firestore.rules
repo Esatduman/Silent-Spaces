@@ -22,7 +22,7 @@ service cloud.firestore {
 
       function canDeleteUser(userId) {
         let isOwner = request.auth.uid == userId;
-      	let username = resource.data.username;
+      	let username = request.resource.data.username;
         // Require Username doc to be deleted after.
         let deletingValidUsername = !existsAfter(/databases/$(database)/documents/usernames/$(username));
         return isOwner && deletingValidUsername;
@@ -42,7 +42,7 @@ service cloud.firestore {
       }
 
       function canDeleteUsername(username) {
-        let isOwner = request.auth.uid == resource.data.uid;
+        let isOwner = request.auth.uid == request.resource.data.uid;
         let userDoc = get(/databases/$(database)/documents/users/$(request.auth.uid));
         let deletingUser = !existsAfter(userDoc);
         return isOwner && deletingUser;
@@ -50,8 +50,26 @@ service cloud.firestore {
 
       match /spaces/{spaceId} {
       	allow read;
-        allow write: if request.auth.uid == request.resource.data.owner;
+        allow create: if canCreatePost(spaceId);
+        allow update: if request.auth.uid == request.resource.data.owner;
+        allow delete: if canDeletePost(spaceId);
       }
+
+      function canCreatePost(spaceId) {
+        let isOwner = request.auth.uid == request.resource.data.owner;
+        let afterUserSpaces = getAfter(/databases/$(database)/documents/users/$(request.auth.uid)).data.spaces;
+        let addingToSpaces = /databases/$(database)/documents/spaces/$(spaceId) in afterUserSpaces;
+        return isOwner;
+      }
+
+      function canDeletePost(spaceId) {
+        let isOwner = request.auth.uid == request.resource.data.owner;
+        let userSpaces = get(/databases/$(database)/documents/users/$(request.auth.uid)).data.spaces;
+        let afterUserSpaces = getAfter(/databases/$(database)/documents/users/$(request.auth.uid)).data.spaces;
+        let removedUserSpaces = (userSpaces.toSet().difference(afterUserSpaces.toSet()) == [spaceId].toSet());
+        return isOwner && removedUserSpaces;
+      }
+
     }
   }
 }

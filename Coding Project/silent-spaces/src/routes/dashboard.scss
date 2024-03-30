@@ -2,3 +2,26 @@
     height: 50px;
     width: 50px;
 }
+
+.dashboard-header {
+    background-color: #f8f8f8;
+    display: flex;
+}
+
+.dashboard-header > nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 2rem;
+}
+
+.dashboard-header > nav > ul {
+    gap: 2rem;
+    list-style-type: none;
+}
+
+.dashboard-header > nav > ul > li {
+    list-style-type: none;
+    display: inline-block;
+    padding: 0.2rem;
+}

@@ -10,7 +10,7 @@ export function FindASpace() {
     };
     return (<>
     <h1>Find a Space!</h1>
-    <div>
+    {/* <div>
                 <button onClick={handleClick}>Get Current Location</button>
                 {error && <p>Error: {error}</p>}
                 {location && (
@@ -18,7 +18,7 @@ export function FindASpace() {
                         Latitude: {location.latitude}, Longitude: {location.longitude}
                     </p>
                 )}
-            </div>
+            </div> */}
     <SpaceList></SpaceList>
     </>);
 }

@@ -23,7 +23,7 @@ const useGeoLocation = () => {
     }
   };
 
-  return { location, error, getLocation };
+  return { location, error, getLocation, setLocation };
 };
 
 export default useGeoLocation;
