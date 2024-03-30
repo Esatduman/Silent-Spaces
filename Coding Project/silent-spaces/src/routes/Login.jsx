@@ -1,6 +1,7 @@
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth"
+import "./login.scss";
 
 export function Login() {
     const [email, setEmail] = useState("")
@@ -21,11 +22,14 @@ export function Login() {
 
     return (
         <>
-        <div>
-            <h1>Login.</h1>
-            <form>
-                <input onChange={(e) => {setEmail(e.target.value)}} type="text" placeholder="email address"></input>
-                <input onChange={(e) => {setPass(e.target.value)}} type="text" placeholder="password"></input>
+        <div className="login-container">
+            <div className ="logo">
+                <img src="src/assets/Silent-Spaces-New.png"></img>
+            </div>
+            <h1>Login</h1>
+            <form className ="login_form">
+                <input onChange={(e) => {setEmail(e.target.value)}} type="text" placeholder="Email"></input>
+                <input onChange={(e) => {setPass(e.target.value)}} type="text" placeholder="Password"></input>
                 <button onClick={(e) => {
                     e.preventDefault()
                     handleLogin()

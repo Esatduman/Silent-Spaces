@@ -1,0 +1,33 @@
+body {
+    width: 108vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+  }
+
+.logo img {
+    max-width: 100px; // Use max-width to make it responsive
+    height: auto;
+    margin: 0 auto; // This centers the image horizontally
+  }
+  
+  .login-container { 
+    // Width can be a percentage to be more responsive, if desired
+   
+    width: 300px;
+    padding: 2em;
+    border-radius: 8px;
+    background: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  
+    display: flex;
+    flex-direction: column;
+    align-items: center; // This centers the children horizontally
+    justify-content: center; // This centers the children vertically, but only needed if there's extra space along the cross-axis
+  
+    .login_form {
+      width: 100%; // Make sure this is a class applied to the form
+    }
+
+}
