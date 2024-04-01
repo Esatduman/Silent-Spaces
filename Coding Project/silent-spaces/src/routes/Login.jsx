@@ -23,11 +23,12 @@ export function Login() {
 
     return (
         <>
-
         <div class="container">
+        <img src="src/assets/Maps.png" alt="Map" />
             <div class="row">
-                <form action="#" class="form active" id="login">
-                    <h2>Login</h2>
+                <form action="#" class="form_active" id="login">
+                    <h4>Login</h4>
+                    <p>Welcome to Silent Spaces!</p>
                     <label for="email">Email Address</label>
                     <div class="pass-reset" onclick="activeInput(this)">
                         <input name="email" class="email" id="emailInput" placeholder="email" onChange={(e) => {setEmail(e.target.value)}} type="text"></input>
@@ -36,7 +37,7 @@ export function Login() {
                     <div class="pass-reset" onclick="activeInput(this)">
                         <input class="password" name="password" id="password" placeholder="password " onChange={(e) => {setPass(e.target.value)}} type="text"></input>
                     </div>
-                    <button class="btn btn-login" onClick={(e) => {
+                    <button class="btn-login" onClick={(e) => {
                     e.preventDefault()
                     handleLogin()
                     }}>Login</button>

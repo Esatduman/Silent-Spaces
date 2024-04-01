@@ -4,31 +4,41 @@
 
 body {
     background-color: #B0B6D0;
+    
 }
-
 .container {
+    padding: 0;
     display: flex;
     justify-content: center;
-    justify-items: center;
-    align-items: center;
-    align-content: center;
+    align-items: stretch; /* Ensure children stretch to fill the container */
     border-radius: 1rem;
-    margin: 150px 50px;
-    background-color: #FBFBFC;
-    height: 300px;
+    margin: 50px auto; /* Auto margins for horizontal centering */
+    
+    max-width: 80%; /* Adjust this value to make the container narrower */
+    /* Remove any fixed width if set */
+    
+    
 }
-
+.container img {
+   
+    height: 65vh;
+    width: 35vh;
+    margin-right: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 1rem 0rem 0rem 1rem;
+   
+    
+}
 .row {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    max-width: auto; /* Makes the form narrower than before */
     display: flex;
     flex-direction: column;
     align-items: center;
-    align-content: center;
     justify-content: center;
-    justify-items: center;
-    width: 100%;
-    height: auto;
-    border-right: 10px solid white;
     gap: 10px;
+    border-radius: 0rem 1rem 1rem 0rem;
+
 }
 
 h2 {
@@ -40,13 +50,14 @@ h2 {
     padding: 10px;
 }
 
-.form.active {
+.form_active {
     display: flex;
-    transform: scale(1);
-    opacity: 1;
     flex-direction: column;
     gap: 10px;
-    animation: show 1s;
+    width: 100%; /* Ensures the form uses the full width of its container (.row here) */
+    margin: 10; /* Centers the form */
+    
+    
 }
 
 
@@ -57,6 +68,7 @@ input {
     border: 1px solid #5E5763;
     border-radius: 5px;
     background-color: #FBFBFC;
+   
 }
 
 .password,
@@ -93,9 +105,12 @@ input {
     transition: all ease 0.3s;
 }
 
+
+
 .btn-login {
-    background-color: #425563;
+    background-color: #000000;
     color: #ffffff;
+    height: 50px;
     border-radius: 9px;
 }
 
