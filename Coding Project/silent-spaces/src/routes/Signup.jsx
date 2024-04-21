@@ -38,8 +38,8 @@ export function Signup() {
                         <input class="password" name="password" id="password" placeholder="password" onChange={(e) => {setPass(e.target.value)}} type="text"></input>
                     </div>
                     <button class="btn btn-login" onClick={(e) => {
-                    e.preventDefault()
-                    handleLogin()
+                    e.preventDefault();
+                    handleSignUp();
                     }}>Sign Up</button>
                     <p>Do you have an account? <a onclick="changeToLogin()" id="chnageToLogin">Sign in</a></p>
                     
