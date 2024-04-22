@@ -91,12 +91,24 @@ header > nav > ul > li > a:hover::after {
     border: 2px solid rgba(0, 0, 0);
     border-radius: 13px;
     display: block;
-    width: 350px;
+    width: 40%;
 }
 
 .create-space > section {
     align-items: center;
     text-align: center;
+    margin: 2rem 0;
+}
+
+.create-space .images {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.create-space .images img {
+    width: 300px;
+    margin: 10px;
 }
 
 .create-space > h1 {
@@ -159,5 +171,19 @@ header > nav > ul > li > a:hover::after {
     margin-bottom: 50px;
 }
 
+.create-space .images {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
 
+.create-space .images img {
+    width: 300px;
+    margin: 10px;
+}
+
+.space-view-images img {
+    width: 300px;
+    margin: 10px;
+}
 

@@ -4,9 +4,12 @@ import { useParams, useNavigate } from 'react-router-dom'
 import { Context } from "../../components/AuthContext";
 import useGeoLocation from "../../components/useGeoLocation";
 import { geohashForLocation } from "geofire-common";
+import { getStorage } from "firebase/storage";
+import { ref, uploadBytes, listAll, getDownloadURL } from "firebase/storage";
 
 export function CreateASpace() {
     const db = getFirestore();
+    const storage = getStorage();
     const navigate = useNavigate();
     const { user } = useContext(Context);
     const { getLocation, location, error, setLocation } = useGeoLocation();
@@ -19,6 +22,14 @@ export function CreateASpace() {
             const foundData = docSnap.data();
             console.log("Document data:", foundData);
             setExistingSpaceData(foundData);
+            // var imgListRef = ref(storage, `/space-imgs/${spaceId}`);
+            // listAll(imgListRef).then((response) => {
+            //     response.items.forEach((item) => {
+            //         getDownloadURL(item).then((downloadUrl) => {
+            //             setSpaceImgs((prev) => [...prev, downloadUrl]);
+            //         });
+            //     });
+            // });
         } else {
             console.log("No doc found");
         }
@@ -60,6 +71,7 @@ export function CreateASpace() {
     const [spaceName, setSpaceName] = useState("");
     const [spaceDisplayName, setSpaceDisplayName] = useState("");
     const [spaceDesc, setSpaceDesc] = useState("");
+    const [spaceImgs, setSpaceImgs] = useState([]);
 
     if (spaceId) {
         useEffect(() => {
@@ -76,11 +88,30 @@ export function CreateASpace() {
             setSpaceDesc(existingSpaceData.desc);
         if(existingSpaceData.lat && existingSpaceData.lat)
             setLocation({latitude: existingSpaceData.lat, longitude: existingSpaceData.lng});
+        if(existingSpaceData.imgs)
+            setSpaceImgs(existingSpaceData.imgs);
     }, [existingSpaceData]);
 
+    const [imageUploads, setImageUploads] = useState([]);
+    const uploadImages = () => {
+        if (imageUploads.length == 0) return;
+        const imageRequests = Array.from(imageUploads).map(f => {
+            const imgsRef = ref(storage, `space-imgs/${spaceId}/${f.name}`);
+            return uploadBytes(imgsRef, f);
+        });
+        Promise.all(imageRequests).then((snapshots) => {
+            Promise.all(snapshots.map((snapshot) => {
+                return getDownloadURL(snapshot.ref);
+            })).then(results => {
+                alert('Images uploaded!');
+                setSpaceImgs(results);
+                console.log(results);
+            });
+        });
+    };
     return (<>
     
-    <form class='create-space'>
+    <form className='create-space'>
     {spaceId ? (<h1>Editing a Space</h1>)
     : (<h1>Creating a Space</h1>)}
         <section>
@@ -103,7 +134,18 @@ export function CreateASpace() {
                 <>No location <br></br><button onClick={(e) => {getLocation(); e.preventDefault()}}>Get Current Location</button></>
             )}
         </section>
-        <div class = 'create-button'>
+        <br />
+        <section>
+            <h4>Images</h4> 
+            <div className="images">
+            {spaceImgs.map((url) => {
+                return <img src={url}/>;
+            })}
+            <input type="file" onChange={(event) => {setImageUploads(event.target.files);}}></input>
+            <button onClick={(e) => {e.preventDefault(); uploadImages();}}>Upload Images</button>
+            </div>
+        </section>
+        <div className='create-button'>
         <button onClick={(e) => {
             e.preventDefault();
             createSpace({
@@ -111,6 +153,7 @@ export function CreateASpace() {
                 displayName: spaceDisplayName,
                 desc: spaceDesc,
                 owner: user.uid,
+                imgs: spaceImgs,
             }, location);
             }}>
             {spaceId ? <>Edit Space</> : <>Create Space</>}
