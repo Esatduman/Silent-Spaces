@@ -102,7 +102,7 @@ header > nav > ul > li > a:hover::after {
 
 .create-space .images {
     display: flex;
-<<<<<<< HEAD
+
     flex-wrap: wrap;
     min-height: 400px;
 }
@@ -110,10 +110,10 @@ header > nav > ul > li > a:hover::after {
     flex: 1;
     border: 5px solid #646464a6;
     width: 200px;
-=======
+
     align-items: center;
     flex-direction: column;
->>>>>>> e6a245d3b0a78e39d4c9f63574bdb459129c3fda
+
 }
 
 .create-space .images img {
