@@ -5,7 +5,7 @@ import { Context } from "../../components/AuthContext";
 import { Navigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 
-import StarRating from "./StarRating";
+// import StarRating from "./StarRating";
 
 import { getStorage } from "firebase/storage";
 import { ref } from "firebase/storage";
