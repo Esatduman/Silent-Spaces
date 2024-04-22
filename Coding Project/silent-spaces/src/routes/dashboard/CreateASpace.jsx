@@ -21,7 +21,7 @@ export function CreateASpace() {
         if (docSnap.exists()) {
             const foundData = docSnap.data();
             console.log("Document data:", foundData);
-            setExistingSpaceData(foundData);
+            loadSpace(foundData);
             // var imgListRef = ref(storage, `/space-imgs/${spaceId}`);
             // listAll(imgListRef).then((response) => {
             //     response.items.forEach((item) => {
@@ -34,6 +34,13 @@ export function CreateASpace() {
             console.log("No doc found");
         }
     };
+    const loadSpace = (space) => {
+        setSpaceName(space.name);
+        setSpaceDisplayName(space.displayName);
+        setSpaceDesc(space.desc);
+        setLocation({latitude: space.lat, longitude: space.lng});
+        setSpaceImgs(space.imgs);
+    }
 
     async function createSpace(space, loc) {
         const geohash = geohashForLocation([loc.latitude, loc.longitude]);
@@ -67,7 +74,6 @@ export function CreateASpace() {
         }
     }
 
-    const [existingSpaceData, setExistingSpaceData] = useState({});
     const [spaceName, setSpaceName] = useState("");
     const [spaceDisplayName, setSpaceDisplayName] = useState("");
     const [spaceDesc, setSpaceDesc] = useState("");
@@ -78,19 +84,6 @@ export function CreateASpace() {
             fetchData(spaceId);
         }, []);
     }
-
-    useEffect(() => {
-        if(existingSpaceData.name)
-            setSpaceName(existingSpaceData.name);
-        if(existingSpaceData.displayName)
-            setSpaceDisplayName(existingSpaceData.displayName);
-        if(existingSpaceData.desc)
-            setSpaceDesc(existingSpaceData.desc);
-        if(existingSpaceData.lat && existingSpaceData.lat)
-            setLocation({latitude: existingSpaceData.lat, longitude: existingSpaceData.lng});
-        if(existingSpaceData.imgs)
-            setSpaceImgs(existingSpaceData.imgs);
-    }, [existingSpaceData]);
 
     const [imageUploads, setImageUploads] = useState([]);
     const uploadImages = () => {
@@ -138,9 +131,9 @@ export function CreateASpace() {
         <section>
             <h4>Images</h4> 
             <div className="images">
-            {spaceImgs.map((url) => {
+            {spaceImgs ? spaceImgs.map((url) => {
                 return <img src={url}/>;
-            })}
+            }) : <></>}
             <input type="file" onChange={(event) => {setImageUploads(event.target.files);}}></input>
             <button onClick={(e) => {e.preventDefault(); uploadImages();}}>Upload Images</button>
             </div>
