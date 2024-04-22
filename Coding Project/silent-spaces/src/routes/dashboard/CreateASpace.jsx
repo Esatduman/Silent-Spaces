@@ -65,6 +65,7 @@ export function CreateASpace() {
                 navigate("/dashboard/spaceview/" + spaceId);
             }).catch((err) => {
                 console.log(err);
+                alert(err.message);
             });
         } else {
             const userDoc = doc(db, "users", user.uid);
@@ -77,6 +78,7 @@ export function CreateASpace() {
                 navigate("/dashboard/spaceview/" + spaceDoc.id);
             }).catch((err) => {
                 console.log(err);
+                alert(err.message);
             });
         }
     }
