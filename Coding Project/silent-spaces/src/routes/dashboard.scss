@@ -5,9 +5,14 @@
 }
 
 .dashboard-header {
+
     background-color: #f8f8f8;
     margin-top: 30px;
+
+    padding-top: 30px;
+    background-color: #FFFFFF;
     display: flex;
+    margin-bottom: 50px;
 }
 
 .dashboard-header > nav {
@@ -19,11 +24,47 @@
 
 .dashboard-header > nav > ul {
     gap: 2rem;
+    padding-left: 0;
+    vertical-align: sub;
     list-style-type: none;
 }
 
 .dashboard-header > nav > ul > li {
     list-style-type: none;
     display: inline-block;
-    padding: 0.2rem;
+    padding-right: 2rem;
+}
+
+div > nav > ul > li > a {
+    position: relative;
+    text-decoration: none;
+    color: black;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+div > nav > ul > li > a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -2px; /* Adjust this value to control the distance of the underline from the text */
+    width: 0;
+    height: 4px; /* Adjust this value to control the thickness of the underline */
+    background-color: black; /* Change this to your desired underline color */
+    transition: width 0.3s ease; /* Add transition for smooth animation */
+    border-radius:4px;
+}
+
+div > nav > ul > li > a:hover::after {
+    width: 100%; /* Expand the underline to cover the width of the text on hover */
+}
+
+.user-profile-logout {
+    display: flex;
+   ;
+}
+
+.profile-info{
+    
+    padding: 5px;
 }

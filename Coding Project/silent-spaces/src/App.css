@@ -67,15 +67,42 @@ header > nav > ul > li > a:hover::after {
   font-weight: bold;
   border-radius: 10px;
   color: white;
-  padding: 0.2rem 1rem;
+  padding: 1rem 1.3rem;
   text-align: center;
   text-decoration: none;
   display: inline-block;
   font-size: 16px;
 }
 
-.space-list {
+.solid {
+    border: 2px solid #000000;
+    border-radius: 2px;
+    opacity: 1;
+}
+
+.find-space-title {
+    color:#010101;
+    font-weight: bold;
+    font-size: 42px;
+}
+
+.create-space {
+    margin-top: 30px;
+    border: 2px solid rgba(0, 0, 0);
+    border-radius: 13px;
+    display: block;
+    width: 80%;
+}
+
+.create-space > section {
+    align-items: center;
+    text-align: center;
+    margin: 2rem 0;
+}
+
+.create-space .images {
     display: flex;
+<<<<<<< HEAD
     flex-wrap: wrap;
     min-height: 400px;
 }
@@ -83,36 +110,108 @@ header > nav > ul > li > a:hover::after {
     flex: 1;
     border: 5px solid #646464a6;
     width: 200px;
+=======
+    align-items: center;
+    flex-direction: column;
+>>>>>>> e6a245d3b0a78e39d4c9f63574bdb459129c3fda
 }
 
-.space-list > .space-list-right {
-    flex: 1;
-    border: 5px solid #000;
+.create-space .images img {
+    width: 300px;
+    margin: 10px;
 }
 
-.space-list {
-    background-color: #646464a6;
-  color: #fff;
-  opacity: .5;
+.create-space > h1 {
+    color:#010101;
+    font-weight: bold;
+    font-size: 36px;
+    text-align: center;
 }
 
-.space-list-left li {
-    list-style: none;
-    
+.create-space input{
+    background: transparent;
+    border: none;
+    outline: none;
+    border: 2px solid rgba(0, 0, 0);
+    border-radius: 10px;
+    font-size: 16px;
+    color: black;
+    padding: 10px 45px 10px 10px;
 }
 
-
-.space-list-left ul {
-    padding: 0; /*to remove the padding of the card-list */
+.create-space > section > h4 {
+    margin-bottom: 3px;
+    text-align: left;
+    padding-left: 60px;
+    font-size: 18px;
+    color: #000000;
 }
 
-.space-card{
-    background-color: white;
-    color:black;
+.create-space textarea{
+    background: transparent;
+    border: none;
+    outline: none;
+    border: 2px solid rgba(0, 0, 0);
+    border-radius: 10px;
+    font-size: 16px;
+    color: black;
+    padding: 10px 45px 10px 25px;
 }
 
-
-.space-card.selected {
-    background-color: #848484;
+.create-button {
+    padding-top: 15px;
+    align-items: center;
+    padding-bottom: 10px;
+    text-align: center;
 }
 
+.space-view-h2 {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    /* margin-bottom: 50px; */
+    font-size: 30px;
+    font-weight: 100;
+    text-decoration: overline solid #000000;
+    padding: 10px;
+    padding-left: 0;
+    color: #a20000;
+}
+
+.space-view-desc {
+    font-size: 24px;
+    margin-bottom: 50px;
+}
+
+.create-space .images {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.create-space .images img {
+    width: 300px;
+    margin: 10px;
+}
+
+.space-view-images img {
+    width: 300px;
+    margin: 10px;
+}
+
+.tags {
+    display: inline-block;
+    gap: 0.2rem;
+    display: flex;
+    flex-direction: row;
+}
+
+.tag {
+    background-color: rgb(196, 231, 255);
+    padding: 0.2em;
+    margin: 0;
+    border-radius: 0.4em;
+}
+
+.tag.edit:hover {
+    background-color:rgb(225, 158, 158);
+    transition: background-color 250ms linear;
+}

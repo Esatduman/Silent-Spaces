@@ -53,6 +53,7 @@ export function Dashboard() {
                 }
                 </ul>
             </nav>
+            <div class="user-profile-logout">
             <div className="profile-info">{user && <img className="profile_icon" src={profileIcon}></img>}
             {user.displayName || user.email || "(anonymous sign-in)"}
             </div>
@@ -61,6 +62,7 @@ export function Dashboard() {
             <button className="auth-btn" onClick={(e) => {handleLogout(); e.preventDefault();}}>Logout</button>
             </>
             }
+            </div>
         </div>
         <div>
             {outlet || <>Error: Unknown dashboard page.</>}
