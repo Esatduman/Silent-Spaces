@@ -187,3 +187,19 @@ header > nav > ul > li > a:hover::after {
     margin: 10px;
 }
 
+.tags {
+    gap: 2rem;
+    display: flex;
+    flex-direction: row;
+}
+
+.tag {
+    background-color: rgb(196, 231, 255);
+    padding: 0.2em;
+    border-radius: 0.4em;
+}
+
+.tag.edit:hover {
+    background-color:rgb(225, 158, 158);
+    transition: background-color 250ms linear;
+}

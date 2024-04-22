@@ -35,11 +35,18 @@ export function CreateASpace() {
         }
     };
     const loadSpace = (space) => {
-        setSpaceName(space.name);
-        setSpaceDisplayName(space.displayName);
-        setSpaceDesc(space.desc);
-        setLocation({latitude: space.lat, longitude: space.lng});
-        setSpaceImgs(space.imgs);
+        if(space.name)
+            setSpaceName(space.name);
+        if(space.displayName)
+          setSpaceDisplayName(space.displayName);
+        if(space.desc)
+            setSpaceDesc(space.desc);
+        if(space.lat && space.lng)
+            setLocation({latitude: space.lat, longitude: space.lng});
+        if(space.imgs)
+            setSpaceImgs(space.imgs);
+        if(space.tags)
+            setSpaceTags(space.tags);
     }
 
     async function createSpace(space, loc) {
@@ -78,6 +85,7 @@ export function CreateASpace() {
     const [spaceDisplayName, setSpaceDisplayName] = useState("");
     const [spaceDesc, setSpaceDesc] = useState("");
     const [spaceImgs, setSpaceImgs] = useState([]);
+    const [spaceTags, setSpaceTags] = useState([]);
 
     if (spaceId) {
         useEffect(() => {
@@ -102,6 +110,24 @@ export function CreateASpace() {
             });
         });
     };
+    const [yourTag, setYourTag] = useState("");
+    const builtInTags = {
+        "quiet": "Noise Restrictions In-Place",
+        "charging": "Charging Ports Available",
+        "food": "Dining Services Available",
+        "scheduled": "Closed/Open by a certain schedule.",
+        "reserved": "Requires Reservation Beforehand",
+        "wheelchair_acc": "Wheelchair Accessible",
+    };
+    const addTag = (tag) => {
+        if(tag == "") return;
+        if(spaceTags.includes(tag)) return;
+        setSpaceTags(prev => [...prev, tag]);
+    }
+    const removeTag = (tag) => {
+        setSpaceTags(prev => prev.filter(rhs => rhs != tag));
+    }
+
     return (<>
     
     <form className='create-space'>
@@ -136,6 +162,24 @@ export function CreateASpace() {
             }) : <></>}
             <input type="file" onChange={(event) => {setImageUploads(event.target.files);}}></input>
             <button onClick={(e) => {e.preventDefault(); uploadImages();}}>Upload Images</button>
+            </div>
+        </section>
+        <section>
+            <h4>Tags</h4> 
+            <ul className="tags">
+            {spaceTags ? spaceTags.map((tag) => {
+                return <span className="tag edit" onClick={(e) => {e.preventDefault(); removeTag(tag);}}>#{tag}</span>;
+            }) : <></>}
+            </ul>
+            <input value={yourTag} onChange={(e) => {setYourTag(e.target.value)}} type="text" placeholder="#your_tag"></input>
+            <button onClick={(e) => {e.preventDefault(); addTag(yourTag); setYourTag("");}}>Add tag</button>
+            <div class="tag-helpers">
+                <span>Tags you might use</span>
+                <div class="dropdown-content">
+                    {Object.keys(builtInTags).filter(tag => !spaceTags.includes(tag)).map(
+                        (tag) => <span className="tag" onClick={(e) => {e.preventDefault(); addTag(tag);}}>{builtInTags[tag]}</span>
+                    )}
+                </div>
             </div>
         </section>
         <div className='create-button'>
