@@ -1,6 +1,6 @@
 import React from "react";
 import { FaStar } from "react-icons/fa"
-
+import { useState } from "react";
 
 export default function StarRating() {
 
@@ -11,7 +11,7 @@ export default function StarRating() {
         <>
         
             {[...Array(5)].map(star => {
-                const currentRate = index + 1
+                const currentRate = star + 1
                 return (
 
                     <label>

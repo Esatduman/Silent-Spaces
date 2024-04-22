@@ -5,7 +5,7 @@ import { Context } from "../../components/AuthContext";
 import { Navigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 
-import StarRating from "./starRating";
+import StarRating from "./StarRating";
 
 import { getStorage } from "firebase/storage";
 import { ref } from "firebase/storage";
@@ -50,7 +50,7 @@ export function SpaceView() {
     return (<>
 
         {existingSpaceData ? (<article>
-            <StarRating />
+            {/* <StarRating /> */}
             <h1>{existingSpaceData.displayName}</h1>
             <hr class="solid"></hr>
             <h2 class='space-view-h2'>{existingSpaceData.name} by @{username}</h2>
