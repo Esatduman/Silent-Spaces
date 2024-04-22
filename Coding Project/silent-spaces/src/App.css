@@ -81,7 +81,7 @@ header > nav > ul > li > a:hover::after {
 }
 .space-list > .space-list-left {
     flex: 1;
-    border: 5px solid #c45050;
+    border: 5px solid #646464a6;
     width: 200px;
 }
 

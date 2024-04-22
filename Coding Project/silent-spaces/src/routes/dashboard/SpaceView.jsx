@@ -4,12 +4,12 @@ import { useParams } from 'react-router-dom'
 import { Context } from "../../components/AuthContext";
 import { Navigate } from "react-router-dom";
 import { Link } from "react-router-dom";
+import StarRating from "./starRating";
 
 export function SpaceView() {
     const db = getFirestore();
     const { user } = useContext(Context);
     const { spaceId } = useParams();
-
     const fetchData = async (spaceId) => {
         const docRef = doc(db, "spaces", spaceId);
         const docSnap = await getDoc(docRef);
@@ -21,7 +21,6 @@ export function SpaceView() {
             console.log("No doc found");
         }
     };
-
     const [existingSpaceData, setExistingSpaceData] = useState({});
 
     if (spaceId) {
@@ -33,7 +32,9 @@ export function SpaceView() {
     }
 
     return (<>
+
         {existingSpaceData ? (<article>
+            <StarRating />
             <h1>{existingSpaceData.displayName}</h1>
             <h2>{existingSpaceData.name}</h2>
             <section>
@@ -44,6 +45,7 @@ export function SpaceView() {
         </article>)
         :
         <article>Loading...</article>
+        
         }
     </>);
 }
