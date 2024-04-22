@@ -25,7 +25,11 @@ export function SpaceCard({space, isSelected}) {
         <span className="slug">@{username}:{space.name}</span>
         <br />
         <span className="space-name">{space.displayName}</span>
-        <br />
+        <ul className="tags">
+        {space.tags ? space.tags.map((tag) => {
+            return <span className="tag">#{tag}</span>;
+        }) : <></>}
+        </ul>
         {/* <Link to={"/dashboard/spaceview/" + space.id}>go to</Link> */}
     </div>
     </>);

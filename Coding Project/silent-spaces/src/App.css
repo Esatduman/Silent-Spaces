@@ -91,7 +91,7 @@ header > nav > ul > li > a:hover::after {
     border: 2px solid rgba(0, 0, 0);
     border-radius: 13px;
     display: block;
-    width: 40%;
+    width: 80%;
 }
 
 .create-space > section {
@@ -157,7 +157,7 @@ header > nav > ul > li > a:hover::after {
 
 .space-view-h2 {
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    margin-bottom: 50px;
+    /* margin-bottom: 50px; */
     font-size: 30px;
     font-weight: 100;
     text-decoration: overline solid #000000;
@@ -188,7 +188,8 @@ header > nav > ul > li > a:hover::after {
 }
 
 .tags {
-    gap: 2rem;
+    display: inline-block;
+    gap: 0.2rem;
     display: flex;
     flex-direction: row;
 }
@@ -196,6 +197,7 @@ header > nav > ul > li > a:hover::after {
 .tag {
     background-color: rgb(196, 231, 255);
     padding: 0.2em;
+    margin: 0;
     border-radius: 0.4em;
 }
 

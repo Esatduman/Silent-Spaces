@@ -27,6 +27,16 @@ export function SpaceView() {
 
     const [existingSpaceData, setExistingSpaceData] = useState({});
 
+    const [username, setUsername] = useState("");
+    const retrieveUsername = async (uid) => {
+        const userRef = doc(db, "users", uid);
+        const userSnap = await getDoc(userRef);
+        setUsername(userSnap.data().username);
+    }
+    useEffect(() => {
+        retrieveUsername(existingSpaceData.owner);
+    }, [existingSpaceData]);
+
     if (spaceId) {
         useEffect(() => {
             fetchData(spaceId);
@@ -39,7 +49,12 @@ export function SpaceView() {
         {existingSpaceData ? (<article>
             <h1>{existingSpaceData.displayName}</h1>
             <hr class="solid"></hr>
-            <h2 class='space-view-h2'>{existingSpaceData.name}</h2>
+            <h2 class='space-view-h2'>{existingSpaceData.name} by @{username}</h2>
+            <ul className="tags">
+            {existingSpaceData.tags ? existingSpaceData.tags.map((tag) => {
+                return <span className="tag">#{tag}</span>;
+            }) : <></>}
+            </ul>
             <section class='space-view-images'>
             {existingSpaceData.imgs ? 
             existingSpaceData.imgs.map(url => <><img key={url} src={url}></img></>)

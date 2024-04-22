@@ -176,9 +176,11 @@ export function CreateASpace() {
             <div class="tag-helpers">
                 <span>Tags you might use</span>
                 <div class="dropdown-content">
+                    <ul className="tags">
                     {Object.keys(builtInTags).filter(tag => !spaceTags.includes(tag)).map(
                         (tag) => <span className="tag" onClick={(e) => {e.preventDefault(); addTag(tag);}}>{builtInTags[tag]}</span>
                     )}
+                    </ul>
                 </div>
             </div>
         </section>
@@ -191,6 +193,7 @@ export function CreateASpace() {
                 desc: spaceDesc,
                 owner: user.uid,
                 imgs: spaceImgs,
+                tags: spaceTags,
             }, location);
             }}>
             {spaceId ? <>Edit Space</> : <>Create Space</>}
