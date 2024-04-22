@@ -1,0 +1,56 @@
+.space-card {
+    margin: 5px;
+    padding: 5px;
+    border: 2px solid #000000;
+    border-radius: 10px;
+    align-items: center;
+    text-align: left;
+    cursor: pointer;
+}
+
+.space-card:hover {
+    background-color: #e0dddd;
+}
+
+.space-list {
+    background-color: #FFFFFF;
+    opacity: 1;
+    display: flex;
+    flex-wrap: wrap;
+    min-height: 400px;
+}
+
+.space-list > .space-list-left {
+    flex: 1;
+    max-width: 50%;
+    padding: 5px;
+    border: 5px solid #000000;
+}
+
+.space-list > .space-list-right {
+    flex: 1;
+    max-width: 50%;
+    padding: 5px;
+    border: 5px solid #000000;
+}
+
+.slug {
+    color:#a20000;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.space-name {
+    color:#010101;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.space-list-left li {
+    list-style: none;
+    
+}
+
+.space-list-left ul {
+    padding: 0; /*to remove the padding of the card-list */
+}

@@ -35,8 +35,9 @@ export function SpaceView() {
     return (<>
         {existingSpaceData ? (<article>
             <h1>{existingSpaceData.displayName}</h1>
-            <h2>{existingSpaceData.name}</h2>
-            <section>
+            <hr class="solid"></hr>
+            <h2 class='space-view-h2'>{existingSpaceData.name}</h2>
+            <section class='space-view-desc'>
                 {existingSpaceData.desc}
             </section>
             {user.uid == existingSpaceData.owner && 

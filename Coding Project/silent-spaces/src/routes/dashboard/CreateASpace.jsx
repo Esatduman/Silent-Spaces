@@ -79,29 +79,31 @@ export function CreateASpace() {
     }, [existingSpaceData]);
 
     return (<>
+    
+    <form class='create-space'>
     {spaceId ? (<h1>Editing a Space</h1>)
     : (<h1>Creating a Space</h1>)}
-    <form>
         <section>
-            Space ID
+            <h4>Space ID:</h4>
             <input value={spaceName} onChange={(e) => {setSpaceName(e.target.value)}} type="text" placeholder="A 'username' for your space."></input>
         </section>
         <section>
-            Display Name
+            <h4>Display Name:</h4>
             <input value={spaceDisplayName} onChange={(e) => {setSpaceDisplayName(e.target.value)}} type="text" placeholder="A longer form of name"></input>
         </section>
         <section>
-            Description
+            <h4>Description:</h4>
             <textarea value={spaceDesc} onChange={(e) => {setSpaceDesc(e.target.value)}} placeholder="A short description of your space."></textarea>
         </section>
         <section>
-            Location
+            <h4>Location:</h4>
             {location ? (
                 <p>Latitude: {location.latitude}, Longitude: {location.longitude}</p>
             ) : (
-                <>No location <button onClick={(e) => {getLocation(); e.preventDefault()}}>Get Current Location</button></>
+                <>No location <br></br><button onClick={(e) => {getLocation(); e.preventDefault()}}>Get Current Location</button></>
             )}
         </section>
+        <div class = 'create-button'>
         <button onClick={(e) => {
             e.preventDefault();
             createSpace({
@@ -113,6 +115,7 @@ export function CreateASpace() {
             }}>
             {spaceId ? <>Edit Space</> : <>Create Space</>}
         </button>
+        </div>
     </form>
     </>);
 }

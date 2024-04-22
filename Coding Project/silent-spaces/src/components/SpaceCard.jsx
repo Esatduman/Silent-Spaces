@@ -1,6 +1,7 @@
 import { getFirestore, getDoc, doc } from "firebase/firestore";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
+import "./SpaceCard.scss";
 
 export function SpaceCard({space, isSelected}) {
     const db = getFirestore();
@@ -11,18 +12,21 @@ export function SpaceCard({space, isSelected}) {
         const usernameSnap = await getDoc(usernameRef);
         setUsername(usernameSnap.data().username);
     }
+    function handleClick(myLink){
+        window.location.href=myLink;
+    }
 
     useEffect(() => {
         retrieveUsername();
     }, []);
     return (<>
     {/* {JSON.stringify(space)} */}
-    <div className={isSelected ? "space-card selected" : "space-card"} >
+    <div className={isSelected ? "space-card selected" : "space-card"} onClick={(e) => handleClick("/dashboard/spaceview/" + space.id)}>
         <span className="slug">@{username}:{space.name}</span>
         <br />
-        {space.displayName}
+        <span className="space-name">{space.displayName}</span>
         <br />
-        <Link to={"/dashboard/spaceview/" + space.id}>go to</Link>
+        {/* <Link to={"/dashboard/spaceview/" + space.id}>go to</Link> */}
     </div>
     </>);
 }

@@ -67,52 +67,97 @@ header > nav > ul > li > a:hover::after {
   font-weight: bold;
   border-radius: 10px;
   color: white;
-  padding: 0.2rem 1rem;
+  padding: 1rem 1.3rem;
   text-align: center;
   text-decoration: none;
   display: inline-block;
   font-size: 16px;
 }
 
-.space-list {
-    display: flex;
-    flex-wrap: wrap;
-    min-height: 400px;
-}
-.space-list > .space-list-left {
-    flex: 1;
-    border: 5px solid #c45050;
-    width: 200px;
+.solid {
+    border: 2px solid #000000;
+    border-radius: 2px;
+    opacity: 1;
 }
 
-.space-list > .space-list-right {
-    flex: 1;
-    border: 5px solid #000;
+.find-space-title {
+    color:#010101;
+    font-weight: bold;
+    font-size: 42px;
 }
 
-.space-list {
-    background-color: #646464a6;
-  color: #fff;
-  opacity: .5;
+.create-space {
+    margin-top: 30px;
+    border: 2px solid rgba(0, 0, 0);
+    border-radius: 13px;
+    display: block;
+    width: 350px;
 }
 
-.space-list-left li {
-    list-style: none;
-    
+.create-space > section {
+    align-items: center;
+    text-align: center;
+}
+
+.create-space > h1 {
+    color:#010101;
+    font-weight: bold;
+    font-size: 36px;
+    text-align: center;
+}
+
+.create-space input{
+    background: transparent;
+    border: none;
+    outline: none;
+    border: 2px solid rgba(0, 0, 0);
+    border-radius: 10px;
+    font-size: 16px;
+    color: black;
+    padding: 10px 45px 10px 10px;
+}
+
+.create-space > section > h4 {
+    margin-bottom: 3px;
+    text-align: left;
+    padding-left: 60px;
+    font-size: 18px;
+    color: #000000;
+}
+
+.create-space textarea{
+    background: transparent;
+    border: none;
+    outline: none;
+    border: 2px solid rgba(0, 0, 0);
+    border-radius: 10px;
+    font-size: 16px;
+    color: black;
+    padding: 10px 45px 10px 25px;
+}
+
+.create-button {
+    padding-top: 15px;
+    align-items: center;
+    padding-bottom: 10px;
+    text-align: center;
+}
+
+.space-view-h2 {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    margin-bottom: 50px;
+    font-size: 30px;
+    font-weight: 100;
+    text-decoration: overline solid #000000;
+    padding: 10px;
+    padding-left: 0;
+    color: #a20000;
+}
+
+.space-view-desc {
+    font-size: 24px;
+    margin-bottom: 50px;
 }
 
 
-.space-list-left ul {
-    padding: 0; /*to remove the padding of the card-list */
-}
-
-.space-card{
-    background-color: white;
-    color:black;
-}
-
-
-.space-card.selected {
-    background-color: #848484;
-}
 
