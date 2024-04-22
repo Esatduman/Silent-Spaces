@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import "./SpaceCard.scss";
 
-export function SpaceCard({space, isSelected}) {
+export function SpaceCard({space, isSelected, distanceObj }) {
     const db = getFirestore();
     const [username, setUsername] = useState("");
 
@@ -23,6 +23,8 @@ export function SpaceCard({space, isSelected}) {
     {/* {JSON.stringify(space)} */}
     <div className={isSelected ? "space-card selected" : "space-card"} onClick={(e) => handleClick("/dashboard/spaceview/" + space.id)}>
         <span className="slug">@{username}:{space.name}</span>
+        <br />
+        {distanceObj && <span>({Math.trunc(distanceObj.dist * Math.pow(10, 2)) / Math.pow(10, 2)} miles away)</span>}
         <br />
         <span className="space-name">{space.displayName}</span>
         <ul className="tags">

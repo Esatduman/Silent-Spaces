@@ -48,20 +48,23 @@ export function SpaceList({spaceViewData}) {
         }
         const snapshots = await Promise.all(promises);
         const matchingDocs = [];
+        const distances = [];
         for (const snap of snapshots) {
             for (const doc of snap.docs) {
                 const lat = doc.get('lat');
                 const lng = doc.get('lng');
                 const distanceInKm = distanceBetween([lat, lng], center);
                 const distanceInM = distanceInKm * 1000;
+                const distanceInMiles = 0.62137 * distanceInKm;
                 if (distanceInM <= radiusInM) {
-                matchingDocs.push(doc);
+                    matchingDocs.push([doc, distanceInMiles]);
                 }
             }
         }
         const allSpaceDatas = [];
-        for(const doc of matchingDocs) {
-            allSpaceDatas.push({...doc.data(), id: doc.id});
+        for(const el of matchingDocs) {
+            const [doc, dist] = el;
+            allSpaceDatas.push({...doc.data(), id: doc.id, dist: dist});
         }
         setSpaces(allSpaceDatas);
         return matchingDocs;
@@ -120,7 +123,7 @@ export function SpaceList({spaceViewData}) {
         <ul>
         {spaces.map((space) => 
             <li key={space.name}>
-                <SpaceCard space={space} isSelected={lastClicked == space.id}></SpaceCard>
+                <SpaceCard space={space} isSelected={lastClicked == space.id} distanceObj={{dist: space.dist}}></SpaceCard>
             </li>
         )}
         </ul>
