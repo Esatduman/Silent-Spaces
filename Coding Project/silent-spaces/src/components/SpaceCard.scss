@@ -8,6 +8,10 @@
     cursor: pointer;
 }
 
+.space-card.selected {
+    background-color: #b3b3b3;
+}
+
 .space-card:hover {
     background-color: #e0dddd;
 }
