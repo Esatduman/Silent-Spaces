@@ -1,6 +1,6 @@
 header > .logo {
-    min-width: 120px;
-    min-height: 80px;
+    min-width: 200px;
+    min-height: 100px;
     background-size: contain;
     background-repeat: no-repeat;
 }
@@ -10,7 +10,8 @@ header {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    margin: 0 1rem;
+    margin: 0rem 0rem 5rem 0rem;
+   
 }
 
 header > button {

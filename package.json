@@ -3,6 +3,7 @@
     "@react-google-maps/api": "^2.19.3",
     "bootstrap": "^5.3.3",
     "google-map-react": "^2.2.1",
+    "lottie-react": "^2.4.0",
     "use-places-autocomplete": "^4.0.1"
   }
 }

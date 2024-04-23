@@ -1,13 +1,25 @@
 import "./Home.scss";
 import ideaCommons from "@assets/ideaCommons.jpg"
 import students from "@assets/students.jpg"
+import Lottie from 'lottie-react';
+import animationData from '../assets/Animation - 1713849399915.json';
+import roadmap from "@assets/roadmap.png"
+
 
 export function Home() {
+
     return <>
 
+
     <div class = "div1">
-        <h1 class = "title">Silent Spaces Locator</h1>
-        <h2 class = "name">By CS440 Group 5: Esat Duman, Jonathan Juarez, Kent Lizardo, Jose Tejeda</h2>
+     
+        <h1>Welcome to <br></br> Silent Spaces</h1>
+        <div className="animation">
+        <Lottie animationData={animationData} autoplay loop className="lottie-animation"/>
+        </div>
+        <div className="road_container">
+        <img src={roadmap} className="roadmap_image"/>
+        </div>
     </div>
     
     <h3 class = "objective">What is the purpose of Silent Spaces Locator?</h3>
