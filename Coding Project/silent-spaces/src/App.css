@@ -5,6 +5,8 @@ header > .logo {
     background-repeat: no-repeat;
 }
 
+
+
 header {
     max-height: 60px;
     display: flex;
@@ -30,6 +32,46 @@ header > nav > ul {
     gap: 2rem;
     padding: 0;
 }
+
+.auth-links { 
+    display: flex;
+    gap: 2rem;
+    
+   
+}
+
+.auth-links a {
+    position: relative;
+    padding: 5px;
+    text-decoration: none;
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    background-color: rgb(0, 0, 0);
+    border-radius: 10px;
+}
+
+.auth-links a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -6px; /* Adjust this value to control the distance of the underline from the text */
+    width: 0;
+    height: 4px; /* Adjust this value to control the thickness of the underline */
+    background-color: black; /* Change this to your desired underline color */
+    transition: width 0.3s ease; /* Add transition for smooth animation */
+    border-radius:4px;
+}
+
+.auth-links a:hover::after {
+    width: 100%; /* Expand the underline to cover the width of the text on hover */
+
+}
+
+.auth-links a:hover {
+    color: rgb(255, 255, 255); /* Keep the text color the same on hover - becasue of link */
+}
+
 
 /* .header > nav > ul > li > a {
     text-decoration: none;

@@ -26,7 +26,13 @@ export function Header() {
             <nav>
                 <ul>
                 {Object.entries(links).map(([key, val]) => <NavLink key={key} label={key} link={val}></NavLink>)}
-                {!user && Object.entries(authLinks).map(([key, val]) => <NavLink key={key} label={key} link={val}></NavLink>)}
+               {!user &&
+                        <div className="auth-links">
+                            {Object.entries(authLinks).map(([key, val]) => (
+                                <NavLink key={key} label={key} link={val}></NavLink>
+                            ))}
+                        </div>
+                    }
                 </ul>
             </nav>
         </header>
