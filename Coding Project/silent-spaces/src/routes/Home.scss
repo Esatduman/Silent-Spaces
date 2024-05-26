@@ -46,16 +46,34 @@ body, html {
 	margin-right: 20px;
 	font-weight: 600;
 	
-
 }
 
 .purpose-icon { 
     height: 80px;
 	display: block;
-	margin-top: 1rem;
+	margin-top: 2rem;
 	margin-left: auto;
   	margin-right: auto;
 	
+}
+
+.purpose-icon-1 { 
+    height: 80px;
+	display: block;
+	margin-top: 6rem;
+	margin-left: auto;
+  	margin-right: auto;
+	
+}
+
+.obj-icon {
+
+	height: 80px;
+	display: block;
+	margin-top: 1rem;
+	margin-left: auto;
+  	margin-right: auto;
+
 }
 
 .picture1 {
@@ -74,12 +92,13 @@ body, html {
 }
 
 .paragraph-right {
-	// padding-top: 20px;
-	
 	text-align: left;
-	flex: 2;
-	font-family:Georgia, 'Times New Roman', Times, serif;
+	font-family:'Roboto';
 	font-size: large;
+	font-size: 20px;
+	margin-left: 20px;
+	margin-right: 20px;
+	font-weight: 600;
 
 }
 
@@ -130,7 +149,7 @@ body, html {
 .text_1 {
   overflow: hidden;
   width: 20em;
-  height: 25em;
+  height: 28em;
   background-color: white; 
   box-shadow: 3px 3px 20px rgba(0, 0, 0, 0.5);
   border-radius: 1.5em;
@@ -140,23 +159,33 @@ body, html {
 .text_2 {
   overflow: hidden;
   width: 20em;
-  height: 25em;
+  height: 28em;
   background-color: white; 
   box-shadow: 3px 3px 20px rgba(0, 0, 0, 0.5);
   border-radius: 1.5em;
+  display: flex;
+  flex-direction: column; /* Stack header container and paragraph vertically */
   
 }
 
+ul li {
+	text-align: left;
+	font-family:'Roboto';
+	font-size: large;
+	font-size: 20px;
+	margin-left: 20px;
+	margin-right: 20px;
+	font-weight: 600;
+	
+}
 
 .text_3 {
 	overflow: hidden;
 	width: 20em;
-	height: 25em;
+	height: 28em;
 	background-color: white; 
 	box-shadow: 3px 3px 20px rgba(0, 0, 0, 0.5);
-	border-radius: 1.5em;
-	
-	  
+	border-radius: 1.5em;  
   }
 
 
