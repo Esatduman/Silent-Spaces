@@ -7,12 +7,17 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCompass } from '@fortawesome/free-solid-svg-icons';
 import {faLocationDot} from '@fortawesome/free-solid-svg-icons';
 import {faMapLocationDot} from '@fortawesome/free-solid-svg-icons';
-
+import { useNavigate } from 'react-router-dom'; // Import useNavigate
 
 
 
 export function Home() {
 
+    const navigate = useNavigate(); // Use useNavigate hook
+
+    const handleGetStartedClick = () => {
+        navigate('/signup'); // Navigate to signup page
+    }
     return <>
 
     
@@ -23,7 +28,7 @@ export function Home() {
         <div className="animation">
         <Lottie animationData={animationData} autoplay loop className="lottie-animation"/>
         </div>
-        <button class="Start_Button">Get Started Here</button>
+        <button class="Start_Button" onClick= {handleGetStartedClick}>Get Started Here</button>
         
     </div>
     

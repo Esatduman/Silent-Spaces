@@ -30,6 +30,7 @@ export function Signup() {
             <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet"></link>
         </head>
         <div class="container">
+        <img src="src/assets/Maps.png" alt="Map" />
             <div class="row">
                 <form action="#" class="form active" id="register">
                     <h2>Sign Up</h2>
@@ -41,7 +42,7 @@ export function Signup() {
                     <div class="pass-reset" onclick="activeInput(this)">
                         <input class="password" name="password" id="password" placeholder="password" onChange={(e) => {setPass(e.target.value)}} type="text"></input>
                     </div>
-                    <button class="btn btn-login" onClick={(e) => {
+                    <button class="btn-login" onClick={(e) => {
                     e.preventDefault();
                     handleSignUp();
                     }}>Sign Up</button>
