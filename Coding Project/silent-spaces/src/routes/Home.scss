@@ -7,7 +7,9 @@ body, html {
     scroll-behavior: smooth; /* Ensure smooth scrolling */
 }
 
-
+main {
+    margin: 0 !important; /* Ensure the main element has zero margin */
+}
 
 
 
@@ -200,3 +202,42 @@ ul li {
   max-width: 100%; /* Ensure the container spans the full width */
 	
 }
+
+.Start_Button {
+	font-family:'Roboto';
+	font-weight: 600;
+	font-size: 20px;
+	padding: 15px;
+	margin-left: 3rem;
+	margin-top: 5rem;
+	background-color: #ff7b00;
+	border-radius: 10px;
+	color: white;
+	border: none;
+}
+
+
+.Start_Button:hover {background-color: #a34f00}
+
+.footer {
+    background-color: #333;
+    color: #fff;
+    padding: 20px 0;
+    text-align: center;
+    width: 100%;
+	margin-top: 7rem;
+}
+
+.footer-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+.footer p {
+    margin: 0;
+    font-size: 1rem;
+}
+
+

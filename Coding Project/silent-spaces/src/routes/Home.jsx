@@ -23,7 +23,7 @@ export function Home() {
         <div className="animation">
         <Lottie animationData={animationData} autoplay loop className="lottie-animation"/>
         </div>
-        <button class="Start_Button">Get Started</button>
+        <button class="Start_Button">Get Started Here</button>
         
     </div>
     
@@ -67,7 +67,12 @@ export function Home() {
 
     </div>
     
-   
+    <footer className="footer">
+        <div clasName="footer-content">
+        <p>&copy; Silent-Spaces. All rights reserved.</p>
+
+        </div>
+     </footer>
     
     </> 
     
