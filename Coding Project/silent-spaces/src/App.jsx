@@ -15,6 +15,7 @@ import { SpaceView } from "./routes/dashboard/SpaceView";
 
 const router = createBrowserRouter([
     {
+        
         path: '/',
         element: <Body></Body>,
         errorElement: <About></About>,

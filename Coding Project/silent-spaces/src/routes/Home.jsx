@@ -22,13 +22,13 @@ export function Home() {
 
     
 
-    <div class = "div1">
+    <div className = "div1">
      
         <h1>Welcome to <br></br> Silent Spaces</h1>
         <div className="animation">
         <Lottie animationData={animationData} autoplay loop className="lottie-animation"/>
         </div>
-        <button class="Start_Button" onClick= {handleGetStartedClick}>Get Started Here</button>
+        <button className="Start_Button" onClick= {handleGetStartedClick}>Get Started Here</button>
         
     </div>
     
