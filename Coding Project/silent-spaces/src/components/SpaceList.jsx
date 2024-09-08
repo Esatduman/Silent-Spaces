@@ -1,176 +1,132 @@
-import { useEffect, useState, useMemo } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { SpaceCard } from "./SpaceCard";
-import {APIProvider, Map, Marker, AdvancedMarker, InfoWindow, Pin} from '@vis.gl/react-google-maps';
+import { APIProvider, Map, AdvancedMarker, InfoWindow, Pin } from '@vis.gl/react-google-maps';
 import useGeoLocation from "./useGeoLocation";
 import { collection, query, orderBy, startAt, endAt, getDocs, getFirestore } from 'firebase/firestore';
 import { geohashQueryBounds, distanceBetween } from "geofire-common";
+import './SpaceList.scss';
 
 const dummySpaceViewData = {
     spaces: [
-        {
-            owner: 'john-bell',
-            name: 'lcc3',
-            displayName: 'Classroom',
-            rating: 4,
-        },
-        {
-            owner: 'uic',
-            name: 'sce-inner-circle',
-            displayName: 'Student Center East - Inner Circle',
-            rating: 3,
-        },
-        {
-            owner: 'uic',
-            name: 'sele-computer-lab',
-            displayName: 'SELE - Computer Lab',
-            rating: 2,
-        }
+        { owner: 'john-bell', name: 'lcc3', displayName: 'Classroom', rating: 4 },
+        { owner: 'uic', name: 'sce-inner-circle', displayName: 'Student Center East - Inner Circle', rating: 3 },
+        { owner: 'uic', name: 'sele-computer-lab', displayName: 'SELE - Computer Lab', rating: 2 }
     ]
-}
+};
 
 const defaultLoc = { lat: 41.86867120799108, lng: -87.64836798595782 };
-export function SpaceList({spaceViewData}) {
+
+export function SpaceList({ spaceViewData }) {
     const db = getFirestore();
-    const { getLocation, location, error } = useGeoLocation();
-    const viewData = dummySpaceViewData;
-    
-    const retrieveLocations = async (center) => {
+    const { getLocation, location } = useGeoLocation();
+    const [spaces, setSpaces] = useState([]);
+    const [lastClicked, setLastClicked] = useState("");
+
+    const retrieveLocations = useCallback(async (center) => {
         const radiusInM = 50 * 1000;
         const bounds = geohashQueryBounds(center, radiusInM);
-        const promises = [];
-        for (const b of bounds) {
+        const promises = bounds.map(b => {
             const q = query(
                 collection(db, 'spaces'), 
                 orderBy('geohash'), 
                 startAt(b[0]), 
-                endAt(b[1]));
-            promises.push(getDocs(q));
-        }
+                endAt(b[1])
+            );
+            return getDocs(q);
+        });
+        
         const snapshots = await Promise.all(promises);
-        const matchingDocs = [];
-        const distances = [];
-        for (const snap of snapshots) {
-            for (const doc of snap.docs) {
-                const lat = doc.get('lat');
-                const lng = doc.get('lng');
-                const distanceInKm = distanceBetween([lat, lng], center);
-                const distanceInM = distanceInKm * 1000;
-                const distanceInMiles = 0.62137 * distanceInKm;
-                if (distanceInM <= radiusInM) {
-                    matchingDocs.push([doc, distanceInMiles]);
-                }
-            }
-        }
-        const allSpaceDatas = [];
-        for(const el of matchingDocs) {
-            const [doc, dist] = el;
-            allSpaceDatas.push({...doc.data(), id: doc.id, dist: dist});
-        }
+        const allSpaceDatas = snapshots.flatMap(snap => 
+            snap.docs
+                .map(doc => {
+                    const lat = doc.get('lat');
+                    const lng = doc.get('lng');
+                    const distanceInKm = distanceBetween([lat, lng], center);
+                    const distanceInM = distanceInKm * 1000;
+                    const distanceInMiles = 0.62137 * distanceInKm;
+                    return distanceInM <= radiusInM ? { ...doc.data(), id: doc.id, dist: distanceInMiles } : null;
+                })
+                .filter(Boolean)
+        );
+
         setSpaces(allSpaceDatas);
-        return matchingDocs;
-    }
-    
+    }, [db]);
+
     useEffect(() => {
         getLocation();
-    }, []);
+    }, [getLocation]);
+
     useEffect(() => {
-        const getData = setTimeout(async() => {
-            if (location)
-              retrieveLocations([location.latitude, location.longitude]);
-            else
-                retrieveLocations([defaultLoc.lat, defaultLoc.lng]);
-        }, 500)
-        return () => clearTimeout(getData)
-    }, [location]);
+        const fetchData = setTimeout(() => {
+            retrieveLocations(location ? [location.latitude, location.longitude] : [defaultLoc.lat, defaultLoc.lng]);
+        }, 500);
 
-    const [spaces, setSpaces] = useState([]);
+        return () => clearTimeout(fetchData);
+    }, [location, retrieveLocations]);
 
-    // const createMarkerSets = (_spaces) => {
-    //     const markers = _spaces.map((spaceData) => {
-    //         const marker = <AdvancedMarker
-    //             onClick={() => setLastClicked(spaceData.id)}
-    //             position={{lat: spaceData.lat, lng: spaceData.lng}} 
-    //             title={spaceData.displayName}>Test</AdvancedMarker>;
-    //         const info = <InfoWindow
-    //             anchor={marker}
-    //             maxWidth={200}
-    //             onCloseClick={() => setLastClicked("")}>
-    //             Bruh
-    //             This is an example for the{' '}
-    //             <code style={{whiteSpace: 'nowrap'}}>&lt;AdvancedMarker /&gt;</code>{' '}
-    //             combined with an Infowindow.
-    //             </InfoWindow>;
-    //         return {
-    //             id: spaceData.id,
-    //             marker: marker,
-    //             info: info,
-    //         }
-    //     });
-    //     return markers;
-    // };
-    // const spaceMarkerSets = useMemo(
-    //     () => createMarkerSets(spaces),
-    //     [spaces]
-    // );
+    const handleMarkerClick = useCallback((id) => {
+        setLastClicked(id);
+    }, []);
 
-    const [showSpaceInfo, setShowSpaceInfo] = useState(true);
+    return (
+        <div className="space-list">
+            <div className="space-list-left">
+                <ul>
+                    {spaces.map(space => (
+                        <li key={space.id}>
+                            <SpaceCard 
+                                space={space} 
+                                isSelected={lastClicked === space.id} 
+                                distanceObj={{ dist: space.dist }} 
+                            />
+                        </li>
+                    ))}
+                </ul>
+            </div>
+            <div className="space-list-right">
+                <APIProvider 
+                    apiKey='AIzaSyC26_AOm2ZW6U8CbYkjtwwk2WEN09FAAUg' 
+                    mapId='4a818d69b6705787'
+                >
+                    <Map
+                        defaultCenter={defaultLoc}
+                        defaultZoom={14}
+                        mapId='4a818d69b6705787'
+                    >
+                        {location && (
+                            <AdvancedMarker
+                                position={{ lat: location.latitude, lng: location.longitude }}
+                            >
+                                <Pin
+                                    background='#22ccff'
+                                    borderColor='#1e89a1'
+                                    glyphColor='#0f677a'
+                                />
+                            </AdvancedMarker>
+                        )}
 
-    const [lastClicked, setLastClicked] = useState("");
-
-    return (<>
-    <div className="space-list">
-        <div className="space-list-left">
-        <ul>
-        {spaces.map((space) => 
-            <li key={space.name}>
-                <SpaceCard space={space} isSelected={lastClicked == space.id} distanceObj={{dist: space.dist}}></SpaceCard>
-            </li>
-        )}
-        </ul>
+                        {spaces.map(spaceData => (
+                            <div key={spaceData.id}>
+                                <AdvancedMarker
+                                    onClick={() => handleMarkerClick(spaceData.id)}
+                                    position={{ lat: spaceData.lat, lng: spaceData.lng }}
+                                    title={spaceData.displayName}
+                                />
+                                {lastClicked === spaceData.id && (
+                                    <InfoWindow 
+                                        position={{ lat: spaceData.lat, lng: spaceData.lng }}
+                                        maxWidth={200}
+                                        onCloseClick={() => setLastClicked("")}
+                                    >
+                                        {spaceData.displayName}
+                                        <code style={{ whiteSpace: 'nowrap' }}>&lt;{spaceData.name}&gt;</code>
+                                    </InfoWindow>
+                                )}
+                            </div>
+                        ))}
+                    </Map>
+                </APIProvider>
+            </div>
         </div>
-        <div className="space-list-right">
-        <APIProvider 
-        apiKey={'AIzaSyC26_AOm2ZW6U8CbYkjtwwk2WEN09FAAUg'}
-        mapId={'4a818d69b6705787'}
-        >
-            <Map
-            defaultCenter={defaultLoc}
-            defaultZoom={80}
-            mapId={'4a818d69b6705787'}>
-            {location && <AdvancedMarker
-            position={{lat: location.latitude, lng: location.longitude}}
-            ><Pin
-            background={'#22ccff'}
-            borderColor={'#1e89a1'}
-            glyphColor={'#0f677a'}></Pin>
-            </AdvancedMarker>}
-
-            {spaces && spaces.map(spaceData => <><AdvancedMarker
-                key={spaceData.id}
-                onClick={() => setLastClicked(spaceData.id)}
-                position={{lat: spaceData.lat, lng: spaceData.lng}} 
-                title={spaceData.displayName}>
-                </AdvancedMarker>
-                {lastClicked == spaceData.id &&
-                <InfoWindow 
-                position={{lat: spaceData.lat, lng: spaceData.lng}}
-                maxWidth={200}
-                onCloseClick={(e) => setLastClicked("")}>
-                {spaceData.displayName}
-                <code style={{whiteSpace: 'nowrap'}}>&lt;{spaceData.name}&gt;</code>
-                </InfoWindow>}
-                </>
-            )}
-            {/* {spaceMarkerSets.map((markerSet) =>
-            <>
-            {markerSet.marker}
-            {markerSet.info}
-            </>
-            )} */}
-            
-            </Map>
-        </APIProvider>
-        </div>
-    </div>
-    </>);
+    );
 }

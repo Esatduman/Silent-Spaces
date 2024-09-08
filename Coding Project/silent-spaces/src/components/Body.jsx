@@ -5,11 +5,11 @@ import "./body.scss"
 export function Body() {
     return (
         <>
-        <Header></Header>
-        <main>
-        <Outlet />
-        </main>
-        <footer></footer>
+            <Header></Header>
+            <main>
+                <Outlet />
+            </main>
+            <footer></footer>
         </>
     )
 }

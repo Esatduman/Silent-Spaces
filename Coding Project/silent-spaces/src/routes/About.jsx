@@ -1,21 +1,39 @@
 import "./About.scss";
 
 export function About() {
-    return <>
+    const PEOPLE = [
+        {
+            name: "Esat Duman",
+            email: "eduman2@uic.edu",
+        },
+        {
+            name: "Jonathan Juarez",
+            email: "jjuar2@uic.edu",
+        },
+        {
+            name: "Kent Lizardo",
+            email: "kliza2@uic.edu",
+        },
+        {
+            name: "Jose Tejeda",
+            email: "jtejed4@uic.edu"
+        }
+    ];
 
-    <div class = "title-div">
-        <h1 class = "first-header">Meet the Team</h1>
-    </div>
+    return (
+        <>
+            <div className="title-div">
+                <h1 className="header">Meet the Team</h1>
+            </div>
 
-    <div class = "names-div">
-        <h2 class = "name-header">Esat Duman - eduman2@uic.edu</h2>
-
-        <h2 class = "name-header">Jonathan Juarez - jjuar2@uic.edu</h2>
-
-        <h2 class = "name-header">Kent Lizardo - kliza2@uic.edu</h2>
-
-        <h2 class = "name-header">Jose Tejeda - jtejed4@uic.edu</h2>
-    </div>
-
-    </>
+            <div className="names-div">
+                {PEOPLE.map((person, index) => (
+                    <div className="person-div" key={index}>
+                        <h3>{person.name}</h3>
+                        <p>{person.email}</p>
+                    </div>
+                ))}
+            </div>
+        </>
+    );
 }

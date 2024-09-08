@@ -1,8 +1,9 @@
 import logo from "@assets/SIlent-Spaces-New.png";
-import { NavLink } from "./NavLink";
 import { useContext } from "react";
 import { Context } from "../AuthContext";
+import "./Header.scss";
 import { getAuth } from "firebase/auth";
+import { Link } from "react-router-dom";
 
 const links = {
     "Home": "/home",
@@ -16,25 +17,32 @@ const authLinks = {
 }
 
 export function Header() {
-    const {user} = useContext(Context);
+    const { user } = useContext(Context);
 
-    const auth = getAuth();
+    // const auth = getAuth();
 
     return (
-        <header>
-            <div className="logo" style={{'backgroundImage': `url(${logo})`}}></div>
-            <nav>
-                <ul>
-                {Object.entries(links).map(([key, val]) => <NavLink key={key} label={key} link={val}></NavLink>)}
-               {!user &&
-                        <div className="auth-links">
-                            {Object.entries(authLinks).map(([key, val]) => (
-                                <NavLink key={key} label={key} link={val}></NavLink>
-                            ))}
-                        </div>
-                    }
-                </ul>
-            </nav>
-        </header>
+        <nav>
+            <div className="auth-links">
+                <img className="logo" src={logo} />
+                {Object.entries(links).map(([key, val]) => {
+                    return (
+                        <button key={key}>
+                            <Link to={val}>{key}</Link>
+                        </button>
+                    )
+                    // return <NavLink className="nav-link" key={key} label={key} link={val} />
+                })}
+            </div>
+            {!user &&
+                <div className="auth-links">
+                    {Object.entries(authLinks).map(([key, val]) => (
+                        <button key={key}>
+                            <Link to={val}>{key}</Link>
+                        </button>
+                    ))}
+                </div>
+            }
+        </nav>
     )
 }

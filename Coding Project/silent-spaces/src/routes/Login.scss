@@ -1,147 +1,107 @@
 * {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
 }
 
 body {
-    background-color: #B0B6D0;
-    
+    background: #1e1e1e;
+    color: #e0e0e0;
 }
 
-.container img {
-    height: 550px;
-    margin-right: 10px;
-}
-  
-
-.container {
-    padding: 0;
+.login-container {
     display: flex;
+    align-items: center;
     justify-content: center;
-    align-items: stretch; /* Ensure children stretch to fill the container */
-    border-radius: 1rem;
-    margin: 50px auto; /* Auto margins for horizontal centering */
-    
-    max-width: 80%; /* Adjust this value to make the container narrower */
-    /* Remove any fixed width if set */
-    
-    
+    min-height: 80vh;
+    padding: 20px;
 }
-.container img {
-   
-    height: 65vh;
-    width: 35vh;
-    margin-right: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    border-radius: 1rem 0rem 0rem 1rem;
-   
-    
+
+.login-image {
+    height: 60vh;
+    width: auto;
+    margin-right: 20px;
+    border-radius: 10px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
 }
-.row {
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    max-width: auto; /* Makes the form narrower than before */
+
+.login-form-container {
+    background: #282c34;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    max-width: 400px;
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    gap: 10px;
-    border-radius: 0rem 1rem 1rem 0rem;
-
 }
 
-// h2 {
-//     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-//     margin-bottom: 50px;
-//     font-size: 30px;
-//     font-weight: 100;
-//     text-decoration: overline solid #425563;
-//     padding: 10px;
-// }
-
-.form_active {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    width: 100%; /* Ensures the form uses the full width of its container (.row here) */
-    margin: 10; /* Centers the form */
-    
-    
-}
-
-
-
-input {
-    padding: 10px;
-    outline: none;
-    border: 1px solid #5E5763;
-    border-radius: 5px;
-    background-color: #FBFBFC;
-   
-}
-
-.password,
-.email {
-    border: none;
-    padding: 20px;
-    width: 60%;
-}
-
-.email {
-    width: 100%;
-}
-
-.pass-reset {
-    border: 1px solid #B0B6D0;
-    padding: 0 5px;
-    border-radius: 10px;
-    display: flex;
-    align-content: flex-start;
-    justify-content: space-between;
-    justify-items: baseline;
-    align-items: baseline;
+.login-title {
+    font-size: 2.5rem;
+    color: #61dafb;
     margin-bottom: 10px;
-    position: relative;
 }
 
+.login-subtitle {
+    font-size: 1.2rem;
+    color: #e0e0e0;
+    margin-bottom: 20px;
+}
 
-.btn {
-    padding: 15px;
-    outline: none;
+.login-label {
+    font-size: 0.9rem;
+    color: #e0e0e0;
+    margin-bottom: 5px;
+}
+
+.login-input {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
     border: none;
-    cursor: pointer;
-    font-size: 15px;
-    transition: all ease 0.3s;
+    border-radius: 8px;
+    background: #333;
+    color: #e0e0e0;
+    font-size: 1rem;
+    outline: none;
+    transition: background-color 0.3s;
 }
 
-
+.login-input:focus {
+    background-color: #444;
+}
 
 .btn-login {
-    background-color: #000000;
-    color: #ffffff;
-    height: 50px;
-    border-radius: 9px;
+    width: 100%;
+    padding: 15px;
+    border: none;
+    border-radius: 8px;
+    background-color: #61dafb;
+    color: #000;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
 }
 
 .btn-login:hover {
-    background-color: #425563;
+    background-color: #4fa3c2;
+    transform: scale(1.05);
 }
 
-
-p {
-    font-size: 15px;
+.login-footer {
+    font-size: 0.9rem;
+    color: #e0e0e0;
+    margin-top: 15px;
 }
 
-
-a {
+.signup-link {
+    color: #61dafb;
     text-decoration: none;
-    color: #3856d1;
-    font-size: 15px;
-    cursor: pointer;
+    transition: color 0.3s;
 }
 
-label {
-    font-size: 15px;
-}
-
-a:hover {
-    color: #07139C;
+.signup-link:hover {
+    color: #4fa3c2;
 }

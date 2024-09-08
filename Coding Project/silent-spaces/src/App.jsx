@@ -17,57 +17,57 @@ const router = createBrowserRouter([
     {
         
         path: '/',
-        element: <Body></Body>,
-        errorElement: <About></About>,
+        element: <Body />,
+        errorElement: <About />,
         children: [
             {
                 index: true,
-                element: <Home></Home>
+                element: <Home />
             },
             {
                 path: "/home",
-                element: <Navigate to="/"></Navigate>,
+                element: <Navigate to="/" />,
             },
             {
                 path: "/login",
-                element: <Login></Login>,
+                element: <Login />,
             },
             {
                 path: "/signup",
-                element: <Signup></Signup>,
+                element: <Signup />,
             },
             {
                 path: '/dashboard',
-                element: <Protected><Dashboard></Dashboard></Protected>,
+                element: <Protected children={<Dashboard />} />,
                 children: [{
                     // path: 'find-a-space',
                     index: true,
-                    element: <FindASpace></FindASpace>,
+                    element: <FindASpace />,
                 },
                 {
                     path: 'create-a-space',
-                    element: <CreateASpace></CreateASpace>
+                    element: <CreateASpace />
                 },
                 {
                     path: 'create-a-space/:spaceId',
-                    element: <CreateASpace></CreateASpace>
+                    element: <CreateASpace />
                 },
                 {
                     path: 'spaceview/:spaceId',
-                    element: <SpaceView></SpaceView>
+                    element: <SpaceView />
                 },
                 {
                     path: 'spaceview',
-                    element: <SpaceView></SpaceView>
+                    element: <SpaceView />
                 },
                 {
                     path: 'create-guide',
-                    element: <CreateGuideProfile></CreateGuideProfile>
+                    element: <CreateGuideProfile />
                 }]
             },
             {
                 path: '/about',
-                element: <About></About>
+                element: <About />
             }
         ]
     }

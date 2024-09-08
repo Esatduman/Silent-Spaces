@@ -10,47 +10,48 @@ export function Signup() {
     const navigate = useNavigate();
     
     async function handleSignUp() {
-        createUserWithEmailAndPassword(auth, email, pass)
-        .then((user) => {
+        try {
+            const user = await createUserWithEmailAndPassword(auth, email, pass);
             console.log(user);
             navigate("/dashboard");
-        })
-        .catch((error) => {
-            console.log(error)
+        } catch (error) {
+            console.log(error);
             alert(error.message);
-        })
-    };
+        }
+    }
 
     return (
-        <>
-        <head>
-            <meta charset="UTF-8"></meta>
-            <meta http-equiv="X-UA-Compatible" content="IE=edge"></meta>
-            <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
-            <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet"></link>
-        </head>
-        <div class="container">
-        <img src="src/assets/Maps.png" alt="Map" />
-            <div class="row">
-                <form action="#" class="form active" id="register">
-                    <h2>Sign Up</h2>
-                    <label for="email">Email Address</label>
-                    <div class="pass-reset" onclick="activeInput(this)">
-                        <input name="email" class="email" id="emailInput" placeholder="email" onChange={(e) => {setEmail(e.target.value)}} type="text"></input>
-                    </div>
-                    <label for="password">Password</label>
-                    <div class="pass-reset" onclick="activeInput(this)">
-                        <input class="password" name="password" id="password" placeholder="password" onChange={(e) => {setPass(e.target.value)}} type="text"></input>
-                    </div>
-                    <button class="btn-login" onClick={(e) => {
-                    e.preventDefault();
-                    handleSignUp();
-                    }}>Sign Up</button>
-                    <p>Do you have an account? <a onclick="changeToLogin()" id="chnageToLogin">Sign in</a></p>
-                    
+        <div className="login-container">
+            <img src="src/assets/Maps.png" alt="Map" className="login-image" />
+            <div className="login-form-container">
+                <form className="login-form" onSubmit={(e) => { e.preventDefault(); handleSignUp(); }}>
+                    <h4 className="login-title">Sign Up</h4>
+                    <label htmlFor="email" className="login-label">Email Address</label>
+                    <input
+                        name="email"
+                        id="email"
+                        className="login-input"
+                        placeholder="Email"
+                        onChange={(e) => setEmail(e.target.value)}
+                        type="email"
+                        required
+                    />
+                    <label htmlFor="password" className="login-label">Password</label>
+                    <input
+                        name="password"
+                        id="password"
+                        className="login-input"
+                        placeholder="Password"
+                        onChange={(e) => setPass(e.target.value)}
+                        type="password"
+                        required
+                    />
+                    <button type="submit" className="btn-login">Sign Up</button>
+                    <p className="login-footer">
+                        Do you have an account? <a href="/login" className="signup-link">Sign in</a>
+                    </p>
                 </form>
             </div>
         </div>
-        </>
     );
 }

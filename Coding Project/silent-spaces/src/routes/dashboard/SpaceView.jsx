@@ -1,80 +1,79 @@
 import { getFirestore, doc, getDoc } from "firebase/firestore";
 import { useContext, useEffect, useState } from "react";
-import { useParams } from 'react-router-dom'
+import { useParams, Navigate, Link } from 'react-router-dom';
 import { Context } from "../../components/AuthContext";
-import { Navigate } from "react-router-dom";
-import { Link } from "react-router-dom";
-
-
-// import StarRating from "./StarRating";
-
-import { getStorage } from "firebase/storage";
-import { ref } from "firebase/storage";
-
 
 export function SpaceView() {
     const db = getFirestore();
-    const storage = getStorage();
     const { user } = useContext(Context);
     const { spaceId } = useParams();
-    const fetchData = async (spaceId) => {
+    
+    const [existingSpaceData, setExistingSpaceData] = useState(null);
+    const [username, setUsername] = useState("");
+    
+    const fetchSpaceData = async (spaceId) => {
         const docRef = doc(db, "spaces", spaceId);
         const docSnap = await getDoc(docRef);
         if (docSnap.exists()) {
-            const foundData = docSnap.data();
-            console.log("Document data:", foundData);
-            setExistingSpaceData({ ...foundData, id: docSnap.id });
+            setExistingSpaceData({ ...docSnap.data(), id: docSnap.id });
         } else {
-            console.log("No doc found");
+            console.log("No document found");
         }
     };
-    const [existingSpaceData, setExistingSpaceData] = useState({});
 
-    const [username, setUsername] = useState("");
-    const retrieveUsername = async (uid) => {
+    const fetchUsername = async (uid) => {
         const userRef = doc(db, "users", uid);
         const userSnap = await getDoc(userRef);
         setUsername(userSnap.data().username);
-    }
+    };
+
     useEffect(() => {
-        retrieveUsername(existingSpaceData.owner);
+        if (spaceId) {
+            fetchSpaceData(spaceId);
+        }
+    }, [spaceId]);
+
+    useEffect(() => {
+        if (existingSpaceData?.owner) {
+            fetchUsername(existingSpaceData.owner);
+        }
     }, [existingSpaceData]);
 
-    if (spaceId) {
-        useEffect(() => {
-            fetchData(spaceId);
-        }, []);
-    } else {
-        return <Navigate to="/dashboard" replace></Navigate>;
+    if (!spaceId) {
+        return <Navigate to="/dashboard" replace />;
     }
 
-    return (<>
-
-        {existingSpaceData ? (<article>
-            {/* <StarRating /> */}
-            <h1>{existingSpaceData.displayName}</h1>
-            <hr class="solid"></hr>
-            <h2 class='space-view-h2'>{existingSpaceData.name} by @{username}</h2>
-            <ul className="tags">
-            {existingSpaceData.tags ? existingSpaceData.tags.map((tag) => {
-                return <span className="tag">#{tag}</span>;
-            }) : <></>}
-            </ul>
-            <section class='space-view-images'>
-            {existingSpaceData.imgs ? 
-            existingSpaceData.imgs.map(url => <><img key={url} src={url}></img></>)
-            : <></>
-            }
-            </section>
-            <section class='space-view-desc'>
-                {existingSpaceData.desc}
-            </section>
-            {user.uid == existingSpaceData.owner && 
-            <Link to={"/dashboard/create-a-space/" + existingSpaceData.id}>Edit</Link>}
-        </article>)
-        :
-        <article>Loading...</article>
-        
-        }
-    </>);
+    return (
+        <article className="space-view">
+            {existingSpaceData ? (
+                <>
+                    <h1 className="space-view-title">{existingSpaceData.displayName}</h1>
+                    <hr className="space-view-divider" />
+                    <h2 className="space-view-subtitle">
+                        {existingSpaceData.name} by @{username}
+                    </h2>
+                    <ul className="space-view-tags">
+                        {existingSpaceData.tags?.map(tag => (
+                            <li key={tag} className="space-view-tag">#{tag}</li>
+                        ))}
+                    </ul>
+                    <section className="space-view-images">
+                        {existingSpaceData.imgs?.map((url, index) => (
+                            <img key={index} src={url} alt={`Space image ${index + 1}`} />
+                        ))}
+                    </section>
+                    <section className="space-view-description">
+                        {existingSpaceData.desc}
+                    </section>
+                    {user.uid === existingSpaceData.owner && (
+                        <Link to={`/dashboard/create-a-space/${existingSpaceData.id}`} className="space-view-edit-link">
+                            Edit
+                        </Link>
+                    )}
+                </>
+            ) : (
+                <p>Loading...</p>
+            )}
+        </article>
+    );
 }
