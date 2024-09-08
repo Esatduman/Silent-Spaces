@@ -18,7 +18,7 @@ const router = createBrowserRouter([
         
         path: '/',
         element: <Body />,
-        errorElement: <About />,
+        // errorElement: <About />,
         children: [
             {
                 index: true,
@@ -71,7 +71,9 @@ const router = createBrowserRouter([
             }
         ]
     }
-]);
+], {
+    basename: "/Silent-Spaces"
+});
 
 function App() {
     return (
