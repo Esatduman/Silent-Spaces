@@ -4,7 +4,7 @@ import { APIProvider, Map, AdvancedMarker, InfoWindow, Pin } from '@vis.gl/react
 import useGeoLocation from "./useGeoLocation";
 import { collection, query, orderBy, startAt, endAt, getDocs, getFirestore } from 'firebase/firestore';
 import { geohashQueryBounds, distanceBetween } from "geofire-common";
-import './SpaceList.scss';
+import './spaceList.scss';
 
 const dummySpaceViewData = {
     spaces: [
