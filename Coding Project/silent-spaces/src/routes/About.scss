@@ -5,43 +5,11 @@
 .title-div {
     background: linear-gradient(135deg, #1e1e1e, #2e2e2e);  // Dark gradient background
     margin: 40px auto;
+    color: white;
     padding: 20px;
     border-radius: 10px;  // Rounded corners for modern look
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);  // Soft shadow
     max-width: 80%;  // Responsive width
 }
 
-.names-div {
-    text-align: center;
-    font-size: 1.5rem;
-    font-family: 'Roboto', sans-serif;
-    background: linear-gradient(135deg, #282828, #383838);  // Dark gradient background
-    margin: 40px auto;
-    padding: 20px;
-    border-radius: 10px;  // Rounded corners for modern look
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);  // Soft shadow
-    max-width: 80%;  // Responsive width
-}
 
-.person-div {
-    background: #333;  // Dark background for each person
-    color: #e0e0e0;  // Light text color
-    padding: 15px;
-    border-radius: 8px;  // Rounded corners
-    margin: 10px;
-    transition: transform 0.3s, box-shadow 0.3s;  // Smooth hover effects
-}
-
-.person-div:hover {
-    transform: scale(1.05);  // Slight zoom effect
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);  // Enhanced shadow on hover
-}
-
-h3 {
-    font-size: 1.2rem;  // Slightly smaller for a balanced look
-    margin: 0;
-}
-
-p {
-    margin: 0;
-}
